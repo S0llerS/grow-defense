@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://g538kskf6wij"]
+
+[ext_resource type="Script" uid="uid://ccoo1nv1ryy4i" path="res://entities/enemies/enemy/enemy.gd" id="1_iw18e"]
+[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="2_vdup7"]
+[ext_resource type="PackedScene" uid="uid://caqysn8vityxo" path="res://components/HitboxComponent/hitbox_component.tscn" id="3_v0jyx"]
+[ext_resource type="PackedScene" uid="uid://w6ek4np2ijup" path="res://components/HurtboxComponent/hurtbox_component.tscn" id="4_tmfpv"]
+[ext_resource type="PackedScene" uid="uid://brre60hwwrxe8" path="res://components/HealthComponent/health_component.tscn" id="5_tmfpv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqcwe"]
+radius = 15.132746
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0jyx"]
+radius = 44.181442
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6k5f7"]
+radius = 21.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1450677281]
+script = ExtResource("1_iw18e")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=775562032]
+modulate = Color(0.9219101, 0.3641411, 0, 1)
+scale = Vector2(0.34375, 0.28125)
+texture = ExtResource("2_vdup7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1785410690]
+shape = SubResource("CircleShape2D_wqcwe")
+
+[node name="HitboxComponent" parent="." unique_id=268897847 instance=ExtResource("3_v0jyx")]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=935031065]
+shape = SubResource("CircleShape2D_v0jyx")
+
+[node name="HurtboxComponent" parent="." unique_id=1393066919 instance=ExtResource("4_tmfpv")]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=2012887091]
+shape = SubResource("CircleShape2D_6k5f7")
+
+[node name="HealthComponent" parent="." unique_id=2018191492 instance=ExtResource("5_tmfpv")]

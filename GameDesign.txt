@@ -1,0 +1,47 @@
+-- Grow Defense! --
+
+- earn money to buy plants
+- place plants to defend yourself from enemies
+- sometimes get seeds/food
+- use it to upgrade/grow your plants
+
+-- Plants --
+
+- sunflower seed / shooter
+shoots at the nearest enemy in range
+
+- watery beach / splasher
+always shoots
+shoots in circular area around it ( like waves )
+
+- wise tree / wall
+just tanks damage from enemies
+
+- chill guy / slower
+slows enemies
+
+- lily the aura buffer
+buffs nearby plants, doesn't stack
+
+- mighty watermelon / mortar
+slow attack speed, high area damage
+
+-- Enemies --
+
+- basic
+stupid as f
+
+- fast
+moves fast but is low hp
+
+- tanky
+moves slow but is high hp
+
+- ranged
+can attack from range, low hp
+
+- bomb
+moves fast, deals a lot of damage, explodes on dead, low hp
+
+- boss
+slow, high hp, spawns other enemies

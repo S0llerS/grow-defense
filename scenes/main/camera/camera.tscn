@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bm8lke4rk4ae8"]
+
+[ext_resource type="Script" uid="uid://dfvykmr2tla52" path="res://scenes/main/camera/camera.gd" id="1_fbx50"]
+
+[node name="Camera" type="Camera2D" unique_id=1478348313]
+zoom = Vector2(1.5, 1.5)
+limit_left = -2048
+limit_top = -1152
+limit_right = 2048
+limit_bottom = 1152
+position_smoothing_enabled = true
+script = ExtResource("1_fbx50")

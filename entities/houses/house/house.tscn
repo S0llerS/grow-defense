@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bikcticturlbe"]
+
+[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="1_jov7l"]
+[ext_resource type="PackedScene" uid="uid://cjdsuvur7ayn" path="res://entities/collect_area/collect_area.tscn" id="2_ucwar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nvew"]
+size = Vector2(72, 96)
+
+[node name="House" type="StaticBody2D" unique_id=1321336928]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1619379546]
+position = Vector2(35.999996, -1.9999999)
+scale = Vector2(0.546875, 0.734375)
+texture = ExtResource("1_jov7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1774662296]
+position = Vector2(36, -2)
+shape = SubResource("RectangleShape2D_7nvew")
+
+[node name="CollectArea" parent="." unique_id=1474068872 instance=ExtResource("2_ucwar")]
+position = Vector2(-33, -1)
+scale = Vector2(1, 1.6000006)

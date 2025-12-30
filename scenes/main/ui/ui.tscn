@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dfyjp3h5veiav"]
+
+[ext_resource type="Script" uid="uid://b513proc1spoq" path="res://scenes/main/ui/ui.gd" id="1_2q31f"]
+[ext_resource type="Theme" uid="uid://dj2d40381wyn2" path="res://assets/themes/default.tres" id="2_nf0va"]
+[ext_resource type="Texture2D" uid="uid://710gpukaf8tp" path="res://scenes/main/ui/icons/settings_outline_icon.png" id="3_3q8gq"]
+[ext_resource type="PackedScene" uid="uid://cxiv456a7a0oo" path="res://scenes/main/ui/PlantsContainer/plants_container.tscn" id="4_nswco"]
+[ext_resource type="PackedScene" uid="uid://b5bujhl3v0e21" path="res://components/ButtonComponent/button_component.tscn" id="5_fhd3w"]
+
+[node name="UI" type="CanvasLayer" unique_id=234397225]
+process_mode = 3
+script = ExtResource("1_2q31f")
+
+[node name="Control" type="Control" parent="." unique_id=1898408022]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_nf0va")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1927322487]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatsContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=1094556810]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Score" type="Label" parent="Control/MarginContainer/StatsContainer" unique_id=797081065]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Score: 0"
+
+[node name="Money" type="Label" parent="Control/MarginContainer/StatsContainer" unique_id=1150305181]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Money: 0"
+
+[node name="Food" type="Label" parent="Control/MarginContainer/StatsContainer" unique_id=1598188052]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Food: 0"
+
+[node name="Settings" type="Button" parent="Control/MarginContainer" unique_id=665455053]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("3_3q8gq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ButtonComponent" parent="Control/MarginContainer/Settings" unique_id=405084957 instance=ExtResource("5_fhd3w")]
+
+[node name="Wave" type="Label" parent="Control/MarginContainer" unique_id=196654405]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "WAVE 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlantsContainer" parent="Control" unique_id=925818317 instance=ExtResource("4_nswco")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[connection signal="pressed" from="Control/MarginContainer/Settings" to="." method="_on_settings_pressed"]

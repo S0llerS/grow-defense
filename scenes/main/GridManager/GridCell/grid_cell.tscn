@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d1fdxy1litn70"]
+
+[ext_resource type="Script" uid="uid://3fskai06wchm" path="res://scenes/main/GridManager/GridCell/grid_cell.gd" id="1_3a04g"]
+
+[node name="GridCell" type="Node2D" unique_id=1058869375]
+script = ExtResource("1_3a04g")

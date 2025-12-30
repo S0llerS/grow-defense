@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cjdsuvur7ayn"]
+
+[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="1_8eoh1"]
+[ext_resource type="Script" uid="uid://dtm1rgy4kma4d" path="res://entities/collect_area/collect_area.gd" id="1_yqmdj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqmdj"]
+size = Vector2(64, 60)
+
+[node name="CollectArea" type="Area2D" unique_id=1474068872]
+script = ExtResource("1_yqmdj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=18559682]
+modulate = Color(1, 1, 0, 0.39215687)
+scale = Vector2(0.5, 0.484375)
+texture = ExtResource("1_8eoh1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2013624702]
+shape = SubResource("RectangleShape2D_yqmdj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

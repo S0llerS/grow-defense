@@ -1,0 +1,13 @@
+class_name PlantStats
+extends Resource
+
+@export var title : String = "Plant"
+@export var price : int = 100
+
+enum PlantType { SHOOTER, SPLASH, TANK, SUPPORT, MORTAR }
+@export var type : PlantType = PlantType.SHOOTER
+
+@export var health : int = 10
+
+@export var damage : int = 5
+@export var attack_speed : float = 0.8

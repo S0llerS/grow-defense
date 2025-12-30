@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dvm4oskuhd8fy"]
+
+[ext_resource type="Script" uid="uid://dv4huo0tdbqas" path="res://scenes/main/GridManager/grid_manager.gd" id="1_jv6lt"]
+[ext_resource type="Texture2D" uid="uid://cl0wkcbgrjq6a" path="res://scenes/main/GridManager/grid_background.png" id="1_urf5e"]
+[ext_resource type="PackedScene" uid="uid://bvbfhpy15rnh3" path="res://entities/plants/plant/plant.tscn" id="2_06y8l"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_06y8l"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1vk2i"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0m0kw"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kvgxn"]
+
+[node name="GridManager" type="Node2D" unique_id=402390177]
+script = ExtResource("1_jv6lt")
+plant = ExtResource("2_06y8l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987469318]
+modulate = Color(0.3933176, 0.7298083, 0.3890666, 1)
+z_index = -1
+texture_repeat = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_urf5e")
+region_enabled = true
+region_rect = Rect2(0, 0, 2048, 1152)
+
+[node name="Border" type="StaticBody2D" parent="." unique_id=74014738]
+collision_layer = 64
+collision_mask = 0
+
+[node name="Left" type="CollisionShape2D" parent="Border" unique_id=1238729196]
+position = Vector2(-2048, 0)
+shape = SubResource("WorldBoundaryShape2D_06y8l")
+
+[node name="Right" type="CollisionShape2D" parent="Border" unique_id=873813213]
+position = Vector2(2048, 0)
+shape = SubResource("WorldBoundaryShape2D_1vk2i")
+
+[node name="Top" type="CollisionShape2D" parent="Border" unique_id=506059493]
+position = Vector2(0, -1152)
+shape = SubResource("WorldBoundaryShape2D_0m0kw")
+
+[node name="Bottom" type="CollisionShape2D" parent="Border" unique_id=1140520875]
+position = Vector2(0, 1152)
+shape = SubResource("WorldBoundaryShape2D_kvgxn")

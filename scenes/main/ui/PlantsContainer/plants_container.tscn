@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cxiv456a7a0oo"]
+
+[ext_resource type="Theme" uid="uid://dj2d40381wyn2" path="res://assets/themes/default.tres" id="1_yegqd"]
+[ext_resource type="Script" uid="uid://d0y560atboc4c" path="res://scenes/main/ui/PlantsContainer/plants_container.gd" id="2_4xp52"]
+[ext_resource type="PackedScene" uid="uid://cop04faqxk1oj" path="res://scenes/main/ui/PlantsContainer/PlantCell/plant_cell.tscn" id="2_bmf1t"]
+[ext_resource type="PackedScene" uid="uid://b5bujhl3v0e21" path="res://components/ButtonComponent/button_component.tscn" id="3_4aue5"]
+[ext_resource type="Texture2D" uid="uid://b6ruhlr5xial0" path="res://scenes/main/ui/PlantsContainer/icons/toggle_icon.png" id="3_rrw50"]
+[ext_resource type="PackedScene" uid="uid://bvbfhpy15rnh3" path="res://entities/plants/plant/plant.tscn" id="6_rrw50"]
+
+[node name="PlantsContainer" type="CenterContainer" unique_id=956764010]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -216.0
+offset_right = 136.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("1_yegqd")
+script = ExtResource("2_4xp52")
+
+[node name="Container" type="VBoxContainer" parent="." unique_id=414226006]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Toggle" type="Button" parent="Container" unique_id=1161796671]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+flat = true
+
+[node name="Icon" type="TextureRect" parent="Container/Toggle" unique_id=223587212]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.5882353)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.1415927
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("3_rrw50")
+
+[node name="ButtonComponent" parent="Container/Toggle" unique_id=405084957 instance=ExtResource("3_4aue5")]
+
+[node name="PanelContainer" type="PanelContainer" parent="Container" unique_id=1768607839]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Container/PanelContainer" unique_id=1388840704]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+
+[node name="Plant" parent="Container/PanelContainer/GridContainer" unique_id=146052290 instance=ExtResource("2_bmf1t")]
+layout_mode = 2
+plant_scene = ExtResource("6_rrw50")
+
+[node name="PlantCell2" parent="Container/PanelContainer/GridContainer" unique_id=1589530971 instance=ExtResource("2_bmf1t")]
+layout_mode = 2
+
+[node name="PlantCell3" parent="Container/PanelContainer/GridContainer" unique_id=160319891 instance=ExtResource("2_bmf1t")]
+layout_mode = 2
+
+[node name="PlantCell4" parent="Container/PanelContainer/GridContainer" unique_id=2058074505 instance=ExtResource("2_bmf1t")]
+layout_mode = 2
+
+[node name="PlantCell5" parent="Container/PanelContainer/GridContainer" unique_id=970875333 instance=ExtResource("2_bmf1t")]
+layout_mode = 2
+
+[node name="PlantCell6" parent="Container/PanelContainer/GridContainer" unique_id=128624658 instance=ExtResource("2_bmf1t")]
+layout_mode = 2
+
+[connection signal="pressed" from="Container/Toggle" to="." method="_on_toggle_pressed"]
