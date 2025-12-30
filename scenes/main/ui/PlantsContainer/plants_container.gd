@@ -29,14 +29,11 @@ func _input(event: InputEvent) -> void:
 	# handle mouse
 	if event is InputEventMouseButton and selected_pc:
 		if event.pressed:
-			if event.button_index == 1:
-				pass
-			elif event.button_index == 2:
-				selected_pc.outline.visible = false
-				selected_pc = null
+			if event.button_index == 2:
+				deselect_pc()
 	
 	# handle keyboard
-	elif event is InputEventKey and event.pressed:
+	elif event is InputEventKey and event.pressed and is_open:
 		# currently there are 6 plant cells in the grid container
 		for i in range(6):
 			if event.keycode == KEY_1 + i:
@@ -45,11 +42,8 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if selected_pc:
-		if !plant_visuals:
-			plant_visuals = selected_pc.plant_scene.instantiate()
-			add_child(plant_visuals)
-		
-		plant_visuals.global_position = get_global_mouse_position()
+		if plant_visuals:
+			plant_visuals.global_position = get_global_mouse_position()
 
 func select_pc(pc: PlantCell) -> void:
 	if pc == selected_pc:
@@ -72,6 +66,14 @@ func select_pc(pc: PlantCell) -> void:
 	plant_visuals = pc.plant_scene.instantiate()
 	add_child(plant_visuals)
 
+func deselect_pc() -> void:
+	if selected_pc:
+		selected_pc.outline.visible = false
+		selected_pc = null
+		
+		if plant_visuals:
+			plant_visuals.queue_free()
+
 func _on_toggle_pressed() -> void:
 	if is_open:
 		var tween = get_tree().create_tween()
@@ -80,9 +82,7 @@ func _on_toggle_pressed() -> void:
 		tween.tween_property(container, "position", Vector2(0, 180), 0.4).set_trans(Tween.TRANS_CUBIC)
 		tween.tween_property(toggle_icon, "rotation", deg_to_rad(0), 0.3).set_trans(Tween.TRANS_CUBIC)
 		
-		if selected_pc:
-			selected_pc.outline.visible = false
-			selected_pc = null
+		deselect_pc()
 		
 		is_open = false
 	else:

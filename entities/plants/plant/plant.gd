@@ -8,8 +8,6 @@ extends StaticBody2D
 @onready var range_component: RangeComponent = $RangeComponent
 @onready var shoot_component: ShootComponent = $ShootComponent
 
-@onready var select_component: SelectComponent = $SelectComponent
-
 var reach_range : float = 250.0
 
 func _ready() -> void:

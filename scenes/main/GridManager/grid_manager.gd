@@ -9,8 +9,6 @@ extends Node2D
 var cell_size : Vector2 = Vector2(64, 64)
 var grid_size : Vector2 = Vector2(64, 36)
 
-var selected_plant_cell_visuals
-
 func _ready() -> void:
 	init()
 	
@@ -22,45 +20,41 @@ func init() -> void:
 	
 	for x in grid_size.x:
 		for y in grid_size.y:
-			if randf_range(0, 100) < 75:
-				continue
-			
+			# calculate position
 			var pos: Vector2 = Vector2(
 				-width / 2 + cell_size.x * x + cell_size.x / 2,
 				-height / 2 + cell_size.y * y + cell_size.y / 2
 			)
 			
-			var instance: Plant = plant.instantiate()
-			instance.position = pos
-			add_child(instance)
+			# add grid cell
+			var cell: GridCell = grid_cell.instantiate()
 			
-			#var grid_cell = GridCell.new()
-			#grid_cell.plant = instance
+			cell.position = pos
+			add_child(cell)
 			
-			instance.select_component.selected.connect(func():
-				instance.queue_free()
+			# setup signal
+			cell.select_component.place.connect(func():
+				var selected_pc: PlantCell = ui.plants_container.selected_pc
+				if !cell.plant and selected_pc:
+					var plant_instance: Plant = selected_pc.plant_scene.instantiate()
+			
+					cell.add_child(plant_instance)
+					cell.plant = plant_instance
 			)
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == 1 and event.pressed:
-			if ui.plants_container.selected_pc:
-				var diff = Vector2(
-					get_global_mouse_position().x / cell_size.x,
-					get_global_mouse_position().y / cell_size.y
-				)
-				var pos = Vector2(
-					int(diff.x) * cell_size.x + cell_size.x / 2,
-					int(diff.y) * cell_size.y - cell_size.y / 2
-				)
-				var instance: Plant = plant.instantiate()
-				
-				add_child(instance)
-				instance.position = pos
-				
-				instance.select_component.selected.connect(func():
-					instance.queue_free()
-				)
+			cell.select_component.delete.connect(func():
+				if cell.plant:
+					cell.plant.queue_free()
+			)
+			
+			# randomly decide whether to continue or not
+			if randf_range(0, 100) < 75:
+				continue
+			
+			# add primitive plant
+			var instance: Plant = plant.instantiate()
+			
+			cell.add_child(instance)
+			cell.plant = instance
 
 func _physics_process(_delta: float) -> void:
 	pass

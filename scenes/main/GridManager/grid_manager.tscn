@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dv4huo0tdbqas" path="res://scenes/main/GridManager/grid_manager.gd" id="1_jv6lt"]
 [ext_resource type="Texture2D" uid="uid://cl0wkcbgrjq6a" path="res://scenes/main/GridManager/grid_background.png" id="1_urf5e"]
 [ext_resource type="PackedScene" uid="uid://bvbfhpy15rnh3" path="res://entities/plants/plant/plant.tscn" id="2_06y8l"]
+[ext_resource type="PackedScene" uid="uid://d1fdxy1litn70" path="res://scenes/main/GridManager/GridCell/grid_cell.tscn" id="3_1vk2i"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_06y8l"]
 normal = Vector2(1, 0)
@@ -18,6 +19,7 @@ normal = Vector2(0, 1)
 [node name="GridManager" type="Node2D" unique_id=402390177]
 script = ExtResource("1_jv6lt")
 plant = ExtResource("2_06y8l")
+grid_cell = ExtResource("3_1vk2i")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=987469318]
 modulate = Color(0.3933176, 0.7298083, 0.3890666, 1)

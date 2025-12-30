@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c1vjskm3m6j7y" path="res://components/ShootComponent/shoot_component.tscn" id="3_2pijx"]
 [ext_resource type="PackedScene" uid="uid://ch6ng6al21wq6" path="res://components/RangeComponent/range_component.tscn" id="3_rp0je"]
 [ext_resource type="PackedScene" uid="uid://w6ek4np2ijup" path="res://components/HurtboxComponent/hurtbox_component.tscn" id="3_sb8gl"]
-[ext_resource type="PackedScene" uid="uid://blopsgr3in3bj" path="res://components/SelectComponent/select_component.tscn" id="7_sb8gl"]
 
 [sub_resource type="Resource" id="Resource_7v83e"]
 script = ExtResource("2_ctpvu")
@@ -48,5 +47,3 @@ texture = ExtResource("1_idi1t")
 shape = SubResource("CircleShape2D_0rk1f")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1209348285]
-
-[node name="SelectComponent" parent="." unique_id=55152041 instance=ExtResource("7_sb8gl")]

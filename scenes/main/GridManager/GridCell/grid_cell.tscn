@@ -1,6 +1,15 @@
 [gd_scene format=3 uid="uid://d1fdxy1litn70"]
 
 [ext_resource type="Script" uid="uid://3fskai06wchm" path="res://scenes/main/GridManager/GridCell/grid_cell.gd" id="1_3a04g"]
+[ext_resource type="PackedScene" uid="uid://blopsgr3in3bj" path="res://components/SelectComponent/select_component.tscn" id="2_vciq6"]
+[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="3_bk4fp"]
 
 [node name="GridCell" type="Node2D" unique_id=1058869375]
 script = ExtResource("1_3a04g")
+
+[node name="SelectComponent" parent="." unique_id=55152041 instance=ExtResource("2_vciq6")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1812488566]
+modulate = Color(1, 1, 0, 0.30588236)
+scale = Vector2(0.515625, 0.515625)
+texture = ExtResource("3_bk4fp")

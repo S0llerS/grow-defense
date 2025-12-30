@@ -1,6 +1,8 @@
 class_name Enemy
 extends CharacterBody2D
 
+@export var enemy_stats : EnemyStats
+
 @onready var health_component: HealthComponent = $HealthComponent
 
 var speed : float = 100.0

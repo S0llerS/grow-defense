@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://g538kskf6wij"]
 
 [ext_resource type="Script" uid="uid://ccoo1nv1ryy4i" path="res://entities/enemies/enemy/enemy.gd" id="1_iw18e"]
+[ext_resource type="Script" uid="uid://hwggfbc3s1q" path="res://globals/EnemyStats.gd" id="2_6k5f7"]
 [ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="2_vdup7"]
 [ext_resource type="PackedScene" uid="uid://caqysn8vityxo" path="res://components/HitboxComponent/hitbox_component.tscn" id="3_v0jyx"]
 [ext_resource type="PackedScene" uid="uid://w6ek4np2ijup" path="res://components/HurtboxComponent/hurtbox_component.tscn" id="4_tmfpv"]
 [ext_resource type="PackedScene" uid="uid://brre60hwwrxe8" path="res://components/HealthComponent/health_component.tscn" id="5_tmfpv"]
+
+[sub_resource type="Resource" id="Resource_6k5f7"]
+script = ExtResource("2_6k5f7")
+metadata/_custom_type_script = "uid://hwggfbc3s1q"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqcwe"]
 radius = 15.132746
@@ -17,6 +22,7 @@ radius = 21.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1450677281]
 script = ExtResource("1_iw18e")
+enemy_stats = SubResource("Resource_6k5f7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=775562032]
 modulate = Color(0.9219101, 0.3641411, 0, 1)
