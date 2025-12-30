@@ -13,7 +13,10 @@ enum EnemyType { NORMAL, FAST, TANK, RANGED, BOSS }
 @export var money_value : int = 25
 
 @export_group("Base")
-@export var health : int = 10
+@export var speed : float = 100.0
 
+@export var health : int = 10
 @export var damage : int = 5
+
+@export var attack_range : float = 100.0
 @export var attack_speed : float = 0.8

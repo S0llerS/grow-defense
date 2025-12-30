@@ -7,20 +7,20 @@
 
 -- Plants --
 
-- sunflower seed / shooter
+- Sunflower: Angry / shooter
 shoots at the nearest enemy in range
 
-- watery beach / splasher
+- Mush no Room / splasher
 always shoots
 shoots in circular area around it ( like waves )
 
-- wise tree / wall
+- Wood, just wood / wall
 just tanks damage from enemies
 
-- chill guy / slower
+- chill guy, daisy / slower
 slows enemies
 
-- lily the aura buffer
+- lily the aura buffer / support
 buffs nearby plants, doesn't stack
 
 - mighty watermelon / mortar

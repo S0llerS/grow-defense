@@ -1,19 +1,12 @@
 [gd_scene format=3 uid="uid://ch6ng6al21wq6"]
 
 [ext_resource type="Script" uid="uid://cglqernxyeq71" path="res://components/RangeComponent/range_component.gd" id="1_qkp7l"]
-[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="2_3qdg5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nx2jh"]
 radius = 1.0
 
 [node name="RangeComponent" type="Area2D" unique_id=1504474663]
 script = ExtResource("1_qkp7l")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=196558848]
-visible = false
-modulate = Color(0.22352941, 0.8235294, 0, 0.06666667)
-scale = Vector2(0.015625, 0.015625)
-texture = ExtResource("2_3qdg5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=55260275]
 shape = SubResource("CircleShape2D_nx2jh")

@@ -11,8 +11,6 @@ var grid_size : Vector2 = Vector2(64, 36)
 
 func _ready() -> void:
 	init()
-	
-	# signals
 
 func init() -> void:
 	var width = grid_size.x * cell_size.x
@@ -42,19 +40,9 @@ func init() -> void:
 					cell.plant = plant_instance
 			)
 			cell.select_component.delete.connect(func():
-				if cell.plant:
+				var selected_pc: PlantCell = ui.plants_container.selected_pc
+				if selected_pc:
+					ui.plants_container.deselect_pc()
+				elif cell.plant:
 					cell.plant.queue_free()
 			)
-			
-			# randomly decide whether to continue or not
-			if randf_range(0, 100) < 75:
-				continue
-			
-			# add primitive plant
-			var instance: Plant = plant.instantiate()
-			
-			cell.add_child(instance)
-			cell.plant = instance
-
-func _physics_process(_delta: float) -> void:
-	pass

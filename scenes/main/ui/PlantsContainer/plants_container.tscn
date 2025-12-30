@@ -5,7 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://cop04faqxk1oj" path="res://scenes/main/ui/PlantsContainer/PlantCell/plant_cell.tscn" id="2_bmf1t"]
 [ext_resource type="PackedScene" uid="uid://b5bujhl3v0e21" path="res://components/ButtonComponent/button_component.tscn" id="3_4aue5"]
 [ext_resource type="Texture2D" uid="uid://b6ruhlr5xial0" path="res://scenes/main/ui/PlantsContainer/icons/toggle_icon.png" id="3_rrw50"]
-[ext_resource type="PackedScene" uid="uid://bvbfhpy15rnh3" path="res://entities/plants/plant/plant.tscn" id="6_rrw50"]
+[ext_resource type="PackedScene" uid="uid://im6xj14uob86" path="res://entities/plants/sunflower/sunflower.tscn" id="6_rrw50"]
+[ext_resource type="PackedScene" uid="uid://yweyv4tliety" path="res://entities/plants/mushroom/mushroom.tscn" id="7_5nd0q"]
+[ext_resource type="PackedScene" uid="uid://cksm2s0wkpo4u" path="res://entities/plants/wood/wood.tscn" id="8_bo0g2"]
+[ext_resource type="PackedScene" uid="uid://cvgc270dmddan" path="res://entities/plants/daisy/daisy.tscn" id="9_6uk6x"]
+[ext_resource type="PackedScene" uid="uid://c6u36h547s5g2" path="res://entities/plants/lily/lily.tscn" id="10_k2jup"]
+[ext_resource type="PackedScene" uid="uid://dn2ouwsw6106m" path="res://entities/plants/watermelon/watermelon.tscn" id="11_ulm6b"]
 
 [node name="PlantsContainer" type="CenterContainer" unique_id=956764010]
 anchors_preset = 7
@@ -58,23 +63,28 @@ unique_name_in_owner = true
 layout_mode = 2
 columns = 3
 
-[node name="Plant" parent="Container/PanelContainer/GridContainer" unique_id=146052290 instance=ExtResource("2_bmf1t")]
+[node name="Sunflower" parent="Container/PanelContainer/GridContainer" unique_id=146052290 instance=ExtResource("2_bmf1t")]
 layout_mode = 2
 plant_scene = ExtResource("6_rrw50")
 
-[node name="PlantCell2" parent="Container/PanelContainer/GridContainer" unique_id=1589530971 instance=ExtResource("2_bmf1t")]
+[node name="Mushroom" parent="Container/PanelContainer/GridContainer" unique_id=1589530971 instance=ExtResource("2_bmf1t")]
 layout_mode = 2
+plant_scene = ExtResource("7_5nd0q")
 
-[node name="PlantCell3" parent="Container/PanelContainer/GridContainer" unique_id=160319891 instance=ExtResource("2_bmf1t")]
+[node name="Wood" parent="Container/PanelContainer/GridContainer" unique_id=160319891 instance=ExtResource("2_bmf1t")]
 layout_mode = 2
+plant_scene = ExtResource("8_bo0g2")
 
-[node name="PlantCell4" parent="Container/PanelContainer/GridContainer" unique_id=2058074505 instance=ExtResource("2_bmf1t")]
+[node name="Daisy" parent="Container/PanelContainer/GridContainer" unique_id=2058074505 instance=ExtResource("2_bmf1t")]
 layout_mode = 2
+plant_scene = ExtResource("9_6uk6x")
 
-[node name="PlantCell5" parent="Container/PanelContainer/GridContainer" unique_id=970875333 instance=ExtResource("2_bmf1t")]
+[node name="Lily" parent="Container/PanelContainer/GridContainer" unique_id=970875333 instance=ExtResource("2_bmf1t")]
 layout_mode = 2
+plant_scene = ExtResource("10_k2jup")
 
-[node name="PlantCell6" parent="Container/PanelContainer/GridContainer" unique_id=128624658 instance=ExtResource("2_bmf1t")]
+[node name="Watermelon" parent="Container/PanelContainer/GridContainer" unique_id=128624658 instance=ExtResource("2_bmf1t")]
 layout_mode = 2
+plant_scene = ExtResource("11_ulm6b")
 
 [connection signal="pressed" from="Container/Toggle" to="." method="_on_toggle_pressed"]

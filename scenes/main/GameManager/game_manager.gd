@@ -10,9 +10,6 @@ extends Node2D
 func _ready() -> void:
 	start_wave()
 
-func _physics_process(delta: float) -> void:
-	pass
-
 func add_entity(scene, pos):
 	var instance = scene.instantiate()
 	
@@ -26,12 +23,12 @@ func add_entity(scene, pos):
 
 func get_random_position() -> Vector2:
 	var angle = randf_range(0.0, TAU)
-	var pos = Vector2(cos(angle), sin(angle)) * 3000.0
+	var pos = Vector2(cos(angle), sin(angle)) * 300#0.0
 	
 	return pos
 
 func start_wave():
-	for i in range(50):
+	for i in range(10):
 		add_entity(enemy_scene, get_random_position())
 
 

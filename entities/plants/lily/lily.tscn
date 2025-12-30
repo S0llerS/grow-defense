@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c6u36h547s5g2"]
+
+[ext_resource type="Script" uid="uid://bjfp4urh0g0k3" path="res://entities/plants/lily/lily.gd" id="1_il3c4"]
+[ext_resource type="PackedScene" uid="uid://brre60hwwrxe8" path="res://components/HealthComponent/health_component.tscn" id="2_752kb"]
+[ext_resource type="PackedScene" uid="uid://w6ek4np2ijup" path="res://components/HurtboxComponent/hurtbox_component.tscn" id="3_p8kwf"]
+[ext_resource type="PackedScene" uid="uid://ch6ng6al21wq6" path="res://components/RangeComponent/range_component.tscn" id="4_msb30"]
+[ext_resource type="PackedScene" uid="uid://c1vjskm3m6j7y" path="res://components/ShootComponent/shoot_component.tscn" id="5_pot63"]
+[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="6_2w3cn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ctpvu"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rk1f"]
+radius = 14.0
+
+[node name="Lily" type="StaticBody2D" unique_id=958156574]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_il3c4")
+
+[node name="HealthComponent" parent="." unique_id=2018191492 instance=ExtResource("2_752kb")]
+
+[node name="HurtboxComponent" parent="." unique_id=1393066919 instance=ExtResource("3_p8kwf")]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=514708514]
+shape = SubResource("CircleShape2D_ctpvu")
+
+[node name="RangeComponent" parent="." unique_id=1504474663 instance=ExtResource("4_msb30")]
+collision_layer = 0
+collision_mask = 8
+
+[node name="ShootComponent" parent="." unique_id=1181989319 instance=ExtResource("5_pot63")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1222877329]
+modulate = Color(0.5764706, 0, 1, 1)
+scale = Vector2(0.203125, 0.21875)
+texture = ExtResource("6_2w3cn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=832655109]
+shape = SubResource("CircleShape2D_0rk1f")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1209348285]

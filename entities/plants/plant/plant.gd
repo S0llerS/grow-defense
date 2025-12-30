@@ -12,6 +12,15 @@ var reach_range : float = 250.0
 
 func _ready() -> void:
 	range_component.scale = Vector2(reach_range, reach_range)
+	
+	health_component.damaged.connect(_on_damaged)
+	health_component.destroyed.connect(_on_destroyed)
+
+func _on_damaged():
+	pass
+
+func _on_destroyed():
+	queue_free()
 
 func _physics_process(_delta: float) -> void:
 	var areas = range_component.get_overlapping_areas()
