@@ -35,7 +35,12 @@ func init() -> void:
 				var selected_pc: PlantCell = ui.plants_container.selected_pc
 				if !cell.plant and selected_pc:
 					var plant_instance: Plant = selected_pc.plant_scene.instantiate()
-			
+					
+					var price = plant_instance.plant_stats.price
+					if !Stats.change_money(-price):
+						plant_instance.queue_free()
+						return
+					
 					cell.add_child(plant_instance)
 					cell.plant = plant_instance
 			)

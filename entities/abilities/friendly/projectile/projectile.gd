@@ -1,7 +1,9 @@
 class_name Projectile
 extends CharacterBody2D
 
-var speed : float = 250.0
+var speed : float = 450.0
+
+var damage : int
 
 var direction : Vector2
 var target : Node2D
@@ -23,6 +25,7 @@ func _physics_process(_delta: float) -> void:
 func _on_hitbox_component_area_entered(area: Area2D) -> void:
 	var object = area.get_parent()
 	if object is Enemy:
-		object.health_component.take_damage(5)
+		PopupManager.spawn_damage_popup(global_position, damage)
+		object.health_component.take_damage(damage)
 	
 	queue_free()

@@ -7,14 +7,20 @@ extends Node2D
 
 var can_attack : bool = true
 
-func attack():
+signal attacked
+
+func attack(damage: int):
 	if can_attack:
-		var instance : Splash = splash.instantiate()
+		var instance : EnemySplash = splash.instantiate()
+		
+		instance.damage = damage
 		
 		add_child(instance)
 		instance.global_position = global_position
 		
 		can_attack = false
+		attacked.emit()
+		
 		timer.start()
 
 func _on_timer_timeout() -> void:

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cicat105x4uyn"]
+
+[ext_resource type="Script" uid="uid://b8ny5sjia21t3" path="res://entities/enemies/ranged/ranged.gd" id="1_xwsnb"]
+[ext_resource type="Script" uid="uid://hwggfbc3s1q" path="res://globals/EnemyStats.gd" id="2_a2ult"]
+[ext_resource type="PackedScene" uid="uid://brre60hwwrxe8" path="res://components/HealthComponent/health_component.tscn" id="2_syl0b"]
+[ext_resource type="PackedScene" uid="uid://w6ek4np2ijup" path="res://components/HurtboxComponent/hurtbox_component.tscn" id="3_y57xl"]
+[ext_resource type="PackedScene" uid="uid://cqglintsvoc3x" path="res://components/DamageComponent/damage_component.tscn" id="4_0oa61"]
+[ext_resource type="PackedScene" uid="uid://ch6ng6al21wq6" path="res://components/RangeComponent/range_component.tscn" id="5_bctnj"]
+[ext_resource type="PackedScene" uid="uid://diro4ixbmp037" path="res://components/AttackComponent/attack_component.tscn" id="6_ueecv"]
+[ext_resource type="PackedScene" uid="uid://dw8qmp7yndk4u" path="res://entities/abilities/enemy/enemy_splash/enemy_splash.tscn" id="7_hd7so"]
+[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="8_n23so"]
+
+[sub_resource type="Resource" id="Resource_xcdy6"]
+script = ExtResource("2_a2ult")
+title = "Ranged Enemy"
+type = 3
+enemy_value = 2
+score_value = 200
+money_value = 75
+speed = 90.0
+health = 8
+damage = 4
+attack_range = 128.0
+metadata/_custom_type_script = "uid://hwggfbc3s1q"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6k5f7"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqcwe"]
+radius = 24.0
+
+[node name="Ranged" type="CharacterBody2D" unique_id=1450677281]
+collision_layer = 8
+collision_mask = 15
+script = ExtResource("1_xwsnb")
+enemy_stats = SubResource("Resource_xcdy6")
+
+[node name="HealthComponent" parent="." unique_id=2018191492 instance=ExtResource("2_syl0b")]
+
+[node name="HurtboxComponent" parent="." unique_id=1393066919 instance=ExtResource("3_y57xl")]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=2012887091]
+shape = SubResource("CircleShape2D_6k5f7")
+
+[node name="DamageComponent" parent="." unique_id=222736369 instance=ExtResource("4_0oa61")]
+
+[node name="RangeComponent" parent="." unique_id=1504474663 instance=ExtResource("5_bctnj")]
+collision_layer = 0
+collision_mask = 6
+
+[node name="AttackComponent" parent="." unique_id=408300658 instance=ExtResource("6_ueecv")]
+splash = ExtResource("7_hd7so")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=775562032]
+modulate = Color(1, 0.6235135, 0.38541865, 1)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("8_n23so")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1785410690]
+shape = SubResource("CircleShape2D_wqcwe")

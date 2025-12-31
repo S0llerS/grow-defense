@@ -1,20 +1,21 @@
 class_name ShootComponent
 extends Node2D
 
-@export var projectile : PackedScene
+@export var projectile_scene : PackedScene
 
 @onready var timer: Timer = $Timer
 
 var can_shoot : bool = true
 
-func shoot(target: Node2D):
+func shoot(damage: int, target: Node2D):
 	if can_shoot:
-		var instance : Projectile = projectile.instantiate()
+		var projectile : Projectile = projectile_scene.instantiate()
 		
-		instance.target = target
+		projectile.damage = damage
+		projectile.target = target
 		
-		get_parent().get_parent().add_child(instance)
-		instance.global_position = global_position
+		get_parent().get_parent().add_child(projectile)
+		projectile.global_position = global_position
 		
 		can_shoot = false
 		timer.start()

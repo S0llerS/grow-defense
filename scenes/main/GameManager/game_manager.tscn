@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://bbfs8l8ng38u0"]
 
 [ext_resource type="Script" uid="uid://kko6t5tqkuco" path="res://scenes/main/GameManager/game_manager.gd" id="1_ggi5c"]
-[ext_resource type="PackedScene" uid="uid://g538kskf6wij" path="res://entities/enemies/enemy/enemy.tscn" id="3_rtoc7"]
+[ext_resource type="PackedScene" uid="uid://boaigleeu7eao" path="res://entities/enemies/normal/normal.tscn" id="2_x3h0f"]
+[ext_resource type="PackedScene" uid="uid://dbx5kufcmwfy7" path="res://entities/enemies/fast/fast.tscn" id="3_aktqy"]
+[ext_resource type="PackedScene" uid="uid://bg7efryqjbytk" path="res://entities/enemies/bomb/bomb.tscn" id="4_p4lfy"]
+[ext_resource type="PackedScene" uid="uid://cicat105x4uyn" path="res://entities/enemies/ranged/ranged.tscn" id="5_ut4pl"]
+[ext_resource type="PackedScene" uid="uid://c7gbumcvykpj6" path="res://entities/enemies/tank/tank.tscn" id="6_6k71x"]
+[ext_resource type="PackedScene" uid="uid://djs07k47dkj0o" path="res://entities/enemies/boss/boss.tscn" id="7_jgsy5"]
 
 [node name="GameManager" type="Node2D" unique_id=1352425960]
 script = ExtResource("1_ggi5c")
-enemy_scene = ExtResource("3_rtoc7")
+enemy_scenes = Array[PackedScene]([ExtResource("2_x3h0f"), ExtResource("3_aktqy"), ExtResource("4_p4lfy"), ExtResource("5_ut4pl"), ExtResource("6_6k71x"), ExtResource("7_jgsy5")])
 
 [node name="WaveTimer" type="Timer" parent="." unique_id=1494792534]
 unique_name_in_owner = true
-wait_time = 5.0
-autostart = true
+wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

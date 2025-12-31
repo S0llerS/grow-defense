@@ -1,7 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
-var speed : float = 350.0
+@onready var health_component: HealthComponent = $HealthComponent
+
+var speed : float = 160.0
 
 # dash
 @onready var dash_timer: Timer = %DashTimer
@@ -19,6 +21,16 @@ var dash_direction : Vector2
 func _ready() -> void:
 	dash_timer.wait_time = dash_duration
 	dash_cooldown_timer.wait_time = dash_cooldown
+	
+	# signals
+	health_component.damaged.connect(_on_damaged)
+	health_component.destroyed.connect(_on_destroyed)
+
+func _on_damaged():
+	pass
+
+func _on_destroyed():
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")

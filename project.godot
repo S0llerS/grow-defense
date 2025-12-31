@@ -27,6 +27,7 @@ MusicPlayer="*uid://cj23r4px3t27x"
 Stats="*uid://b1s6fdaodi167"
 Settings="*uid://f33c7o1xfsnv"
 DiamondTransition="*uid://bye7qp478frw5"
+PopupManager="*uid://533rbuv23y65"
 
 [display]
 

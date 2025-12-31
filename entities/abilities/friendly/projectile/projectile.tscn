@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bct6eyqgdgc22"]
 
-[ext_resource type="Script" uid="uid://632jh8qc73i1" path="res://entities/projectiles/projectile/projectile.gd" id="1_f13nr"]
+[ext_resource type="Script" uid="uid://632jh8qc73i1" path="res://entities/abilities/friendly/projectile/projectile.gd" id="1_f13nr"]
 [ext_resource type="PackedScene" uid="uid://caqysn8vityxo" path="res://components/HitboxComponent/hitbox_component.tscn" id="2_roenq"]
 [ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="2_xtoli"]
 

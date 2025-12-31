@@ -141,6 +141,12 @@ expand_margin_top = 8.0
 expand_margin_right = 8.0
 expand_margin_bottom = 8.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn1i8"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xv77"]
+bg_color = Color(1, 1, 1, 1)
+
 [resource]
 default_font = ExtResource("1_x0tin")
 default_font_size = 48
@@ -170,6 +176,8 @@ MarginContainer/constants/margin_left = 16
 MarginContainer/constants/margin_right = 16
 MarginContainer/constants/margin_top = 16
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_x0tin")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_nn1i8")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_2xv77")
 RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.39215687)
 RichTextLabel/constants/outline_size = 16
 RichTextLabel/constants/shadow_offset_x = 4

@@ -2,8 +2,23 @@
 
 [ext_resource type="Script" uid="uid://p6kfwapsk7td" path="res://entities/plants/wood/wood.gd" id="1_wvaio"]
 [ext_resource type="PackedScene" uid="uid://brre60hwwrxe8" path="res://components/HealthComponent/health_component.tscn" id="2_3b8db"]
+[ext_resource type="Script" uid="uid://dcjp5tv5gi8ah" path="res://globals/PlantStats.gd" id="2_futjr"]
 [ext_resource type="PackedScene" uid="uid://w6ek4np2ijup" path="res://components/HurtboxComponent/hurtbox_component.tscn" id="3_7pc8b"]
+[ext_resource type="PackedScene" uid="uid://cqglintsvoc3x" path="res://components/DamageComponent/damage_component.tscn" id="4_x6g30"]
 [ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="6_cknx2"]
+[ext_resource type="PackedScene" uid="uid://ch6ng6al21wq6" path="res://components/RangeComponent/range_component.tscn" id="6_smbh0"]
+[ext_resource type="PackedScene" uid="uid://c1vjskm3m6j7y" path="res://components/ShootComponent/shoot_component.tscn" id="7_utgxh"]
+
+[sub_resource type="Resource" id="Resource_x6g30"]
+script = ExtResource("2_futjr")
+title = "Wood, just wood"
+price = 50
+type = 2
+health = 100
+damage = 0
+attack_range = 0.0
+attack_speed = 100.0
+metadata/_custom_type_script = "uid://dcjp5tv5gi8ah"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ctpvu"]
 radius = 14.0
@@ -15,8 +30,11 @@ radius = 30.0
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_wvaio")
+plant_stats = SubResource("Resource_x6g30")
 
 [node name="HealthComponent" parent="." unique_id=2018191492 instance=ExtResource("2_3b8db")]
+
+[node name="DamageComponent" parent="." unique_id=222736369 instance=ExtResource("4_x6g30")]
 
 [node name="HurtboxComponent" parent="." unique_id=1393066919 instance=ExtResource("3_7pc8b")]
 collision_layer = 4
@@ -24,6 +42,14 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=514708514]
 shape = SubResource("CircleShape2D_ctpvu")
+
+[node name="RangeComponent" parent="." unique_id=1504474663 instance=ExtResource("6_smbh0")]
+visible = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="ShootComponent" parent="." unique_id=1181989319 instance=ExtResource("7_utgxh")]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1222877329]
 modulate = Color(0.36941573, 0.13674879, 0.05944535, 1)

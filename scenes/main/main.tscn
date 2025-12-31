@@ -33,7 +33,8 @@ player = NodePath("../Player")
 [node name="Player" parent="." unique_id=2114674234 instance=ExtResource("2_iuonh")]
 position = Vector2(1, 5)
 
-[node name="UI" parent="." unique_id=234397225 instance=ExtResource("4_l3cfh")]
+[node name="UI" parent="." unique_id=234397225 node_paths=PackedStringArray("game_manager") instance=ExtResource("4_l3cfh")]
+game_manager = NodePath("../GameManager")
 
 [node name="GridManager" parent="." unique_id=402390177 node_paths=PackedStringArray("ui") instance=ExtResource("6_ow5a4")]
 ui = NodePath("../UI")

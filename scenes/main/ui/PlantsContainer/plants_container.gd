@@ -17,6 +17,9 @@ func _ready() -> void:
 	for plant_cell in plant_cells:
 		if plant_cell is PlantCell:
 			# setup
+			var plant_stats = plant_cell.plant_scene.instantiate().plant_stats
+			
+			plant_cell.price.text = "$" + str(plant_stats.price)
 			plant_cell.id.text = str(id)
 			id += 1
 			
@@ -31,8 +34,9 @@ func _input(event: InputEvent) -> void:
 		# currently there are 6 plant cells in the grid container
 		for i in range(6):
 			if event.keycode == KEY_1 + i:
-				var pc = grid_container.get_child(i)
-				select_pc(pc)
+				var pc: PlantCell = grid_container.get_child(i)
+				pc.pressed.emit()
+				#select_pc(pc)
 
 func _physics_process(_delta: float) -> void:
 	if selected_pc:
@@ -58,6 +62,8 @@ func select_pc(pc: PlantCell) -> void:
 	selected_pc = pc
 	
 	plant_visuals = pc.plant_scene.instantiate()
+	plant_visuals.process_mode = Node.PROCESS_MODE_DISABLED
+	plant_visuals.modulate.a = 0.8
 	plant_visuals.global_position = get_global_mouse_position()
 	add_child(plant_visuals)
 
