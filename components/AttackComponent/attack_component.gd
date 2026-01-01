@@ -2,6 +2,7 @@ class_name AttackComponent
 extends Node2D
 
 @export var splash : PackedScene
+@export var child_of_attacker : bool = true
 
 @onready var timer: Timer = $Timer
 
@@ -15,7 +16,12 @@ func attack(damage: int):
 		
 		instance.damage = damage
 		
-		add_child(instance)
+		if child_of_attacker:
+			add_child(instance)
+		else:
+			instance.scale = scale * 2.0
+			get_parent().get_parent().add_child(instance)
+			instance.animator.speed_scale = 10.0
 		instance.global_position = global_position
 		
 		can_attack = false

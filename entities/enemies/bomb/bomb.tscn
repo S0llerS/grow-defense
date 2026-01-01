@@ -17,7 +17,7 @@ type = 1
 enemy_value = 10
 score_value = 250
 money_value = 100
-speed = 180.0
+speed = 240.0
 health = 2
 damage = 50
 attack_range = 32.0
@@ -34,6 +34,7 @@ collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_ofqbt")
 enemy_stats = SubResource("Resource_4s14n")
+stop_when_attacking = false
 
 [node name="HealthComponent" parent="." unique_id=2018191492 instance=ExtResource("2_o34iq")]
 
@@ -52,6 +53,7 @@ collision_mask = 6
 
 [node name="AttackComponent" parent="." unique_id=408300658 instance=ExtResource("6_ju4tl")]
 splash = ExtResource("7_pxjfj")
+child_of_attacker = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=775562032]
 modulate = Color(1, 0, 0, 1)

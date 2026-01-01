@@ -6,6 +6,14 @@ extends Node2D
 @export var enemy_scenes : Array[PackedScene]
 var enemy_values : Array[int]
 
+@export_category("Enemies")
+@export var normal_enemy : PackedScene
+@export var fast_enemy : PackedScene
+@export var bomb_enemy : PackedScene
+@export var ranged_enemy : PackedScene
+@export var tank_enemy : PackedScene
+@export var boss_enemy : PackedScene
+
 @onready var wave_timer: Timer = %WaveTimer
 
 var total_wave_enemies: int = 0
@@ -14,21 +22,28 @@ var current_wave_enemies: int = 0
 var enemies_left_to_spawn: int = 0
 var enemy_scenes_to_spawn: Array[PackedScene] = []
 
-var base_budget : int = 500
+var base_budget : int = 10
 var growth_rate : float = 1.25
+
+# for UI, we=WaveEnemies
+signal total_we_changed
+signal current_we_changed
 
 func _ready() -> void:
 	calculate_values()
 	start_wave()
 
-func _process(delta: float) -> void:
-	pass#print(Stats.current_wave_enemies)
-
 func calculate_values() -> void:
-	for enemy_scene in enemy_scenes:
-		var enemy: Enemy = enemy_scene.instantiate()
-		enemy_values.append(enemy.enemy_stats.enemy_value)
-		enemy.queue_free()
+	var enemy: Enemy = bomb_enemy.instantiate()
+	enemy_values.append(1)
+	enemy.queue_free()
+	
+	enemy_scenes = [bomb_enemy]
+	
+	#for enemy_scene in enemy_scenes:
+		#var enemy: Enemy = enemy_scene.instantiate()
+		#enemy_values.append(enemy.enemy_stats.enemy_value)
+		#enemy.queue_free()
 
 func add_entity(scene, pos):
 	if !player:
@@ -42,11 +57,13 @@ func add_entity(scene, pos):
 	add_child(instance)
 	
 	current_wave_enemies += 1
+	current_we_changed.emit()
 	
 	instance.health_component.destroyed.connect(func():
 		current_wave_enemies -= 1
+		current_we_changed.emit()
+		
 		if current_wave_enemies == 0 and enemies_left_to_spawn == 0:
-			print("END")
 			end_wave()
 	)
 
@@ -57,7 +74,9 @@ func get_random_position() -> Vector2:
 	return pos
 
 func distribute_budget(budget):
+	enemy_scenes_to_spawn = []
 	while budget > 0:
+		print("EL: ", enemies_left_to_spawn)
 		if budget == 1:
 			enemy_scenes_to_spawn.append(enemy_scenes[0])
 			enemies_left_to_spawn += 1
@@ -86,12 +105,13 @@ func start_wave():
 	
 	# set final enemy count
 	total_wave_enemies = enemies_left_to_spawn
+	total_we_changed.emit()
 	
 	# spawn enemy with small delay between each other to avoid lag spike
 	for enemy_scene in enemy_scenes_to_spawn:
 		add_entity(enemy_scene, get_random_position())
 		enemies_left_to_spawn -= 1
-		
+		print(enemies_left_to_spawn)
 		await get_tree().create_timer(0.1).timeout
 
 func end_wave():

@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 @export var enemy_stats : EnemyStats
+@export var stop_when_attacking : bool = true
 
 @onready var health_component: HealthComponent = $HealthComponent
 
@@ -58,7 +59,7 @@ func _physics_process(delta: float) -> void:
 			attack_component.attack(result.total_damage)
 	
 	# movement
-	if target and attack_component.can_attack:
+	if target and (attack_component.can_attack or !stop_when_attacking):
 		var direction = (target.global_position - global_position).normalized()
 		velocity = lerp(velocity, direction * enemy_stats.speed, 8.0 * delta)
 	else:

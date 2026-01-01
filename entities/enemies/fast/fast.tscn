@@ -19,6 +19,7 @@ score_value = 200
 money_value = 50
 speed = 200.0
 health = 4
+damage = 1
 attack_speed = 0.6
 metadata/_custom_type_script = "uid://hwggfbc3s1q"
 

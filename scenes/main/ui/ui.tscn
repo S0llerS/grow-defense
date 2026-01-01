@@ -5,6 +5,44 @@
 [ext_resource type="Texture2D" uid="uid://710gpukaf8tp" path="res://scenes/main/ui/icons/settings_outline_icon.png" id="3_3q8gq"]
 [ext_resource type="PackedScene" uid="uid://cxiv456a7a0oo" path="res://scenes/main/ui/PlantsContainer/plants_container.tscn" id="4_nswco"]
 [ext_resource type="PackedScene" uid="uid://b5bujhl3v0e21" path="res://components/ButtonComponent/button_component.tscn" id="5_fhd3w"]
+[ext_resource type="PackedScene" uid="uid://jvyr2qnhq6sa" path="res://scenes/main/ui/EndScreen/end_screen.tscn" id="6_nswco"]
+
+[sub_resource type="Animation" id="Animation_fhd3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/MarginContainer/Wave:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nswco"]
+resource_name = "wave"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/MarginContainer/Wave:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 2.25, 3),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dynxa"]
+_data = {
+&"RESET": SubResource("Animation_fhd3w"),
+&"wave": SubResource("Animation_nswco")
+}
 
 [node name="UI" type="CanvasLayer" unique_id=234397225]
 process_mode = 3
@@ -82,5 +120,12 @@ vertical_alignment = 1
 [node name="PlantsContainer" parent="Control" unique_id=925818317 instance=ExtResource("4_nswco")]
 unique_name_in_owner = true
 layout_mode = 1
+
+[node name="EndScreen" parent="Control" unique_id=1640749263 instance=ExtResource("6_nswco")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=827386682]
+libraries/ = SubResource("AnimationLibrary_dynxa")
 
 [connection signal="pressed" from="Control/MarginContainer/Settings" to="." method="_on_settings_pressed"]

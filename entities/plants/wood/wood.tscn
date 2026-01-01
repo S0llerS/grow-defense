@@ -21,7 +21,7 @@ attack_speed = 100.0
 metadata/_custom_type_script = "uid://dcjp5tv5gi8ah"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ctpvu"]
-radius = 14.0
+radius = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rk1f"]
 radius = 30.0
