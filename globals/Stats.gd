@@ -34,7 +34,7 @@ signal wave_changed
 func reset() -> void:
 	# stats
 	score = 0
-	money = 1000
+	money = 10000
 	food = 0
 	
 	enemies_killed = 0

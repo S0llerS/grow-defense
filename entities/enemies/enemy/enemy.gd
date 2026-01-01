@@ -11,8 +11,9 @@ extends CharacterBody2D
 @onready var range_component: RangeComponent = $RangeComponent
 @onready var attack_component: AttackComponent = $AttackComponent
 
-var max_vel: Vector2
+var speed_multiplier: float = 1.0 # for applying effect e.g. slow
 
+var max_vel: Vector2
 var target : Node2D
 
 func _ready() -> void:
@@ -61,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	# movement
 	if target and (attack_component.can_attack or !stop_when_attacking):
 		var direction = (target.global_position - global_position).normalized()
-		velocity = lerp(velocity, direction * enemy_stats.speed, 8.0 * delta)
+		velocity = lerp(velocity, direction * enemy_stats.speed * speed_multiplier, 8.0 * delta)
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, 8.0 * delta)
 	

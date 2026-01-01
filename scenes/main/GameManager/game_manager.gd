@@ -22,7 +22,7 @@ var current_wave_enemies: int = 0
 var enemies_left_to_spawn: int = 0
 var enemy_scenes_to_spawn: Array[PackedScene] = []
 
-var base_budget : int = 10
+var base_budget : int = 100
 var growth_rate : float = 1.25
 
 # for UI, we=WaveEnemies
@@ -69,14 +69,13 @@ func add_entity(scene, pos):
 
 func get_random_position() -> Vector2:
 	var angle = randf_range(0.0, TAU)
-	var pos = Vector2(cos(angle), sin(angle)) * 300#0.0
+	var pos = Vector2(cos(angle), sin(angle)) * 3000.0
 	
 	return pos
 
 func distribute_budget(budget):
 	enemy_scenes_to_spawn = []
 	while budget > 0:
-		print("EL: ", enemies_left_to_spawn)
 		if budget == 1:
 			enemy_scenes_to_spawn.append(enemy_scenes[0])
 			enemies_left_to_spawn += 1
@@ -111,7 +110,7 @@ func start_wave():
 	for enemy_scene in enemy_scenes_to_spawn:
 		add_entity(enemy_scene, get_random_position())
 		enemies_left_to_spawn -= 1
-		print(enemies_left_to_spawn)
+		
 		await get_tree().create_timer(0.1).timeout
 
 func end_wave():

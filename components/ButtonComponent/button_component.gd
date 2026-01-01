@@ -21,6 +21,9 @@ func _ready() -> void:
 		push_warning("ButtonComponent's parent is NOT a Button.")
 
 func _on_mouse_entered() -> void:
+	if !get_tree():
+		return
+	
 	var tween = get_tree().create_tween()
 	tween.set_parallel()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
@@ -31,6 +34,9 @@ func _on_mouse_entered() -> void:
 	SoundPlayer.play_sound(SoundPlayer.HOVERED)
 
 func _on_mouse_exited() -> void:
+	if !get_tree():
+		return
+	
 	var tween = get_tree().create_tween()
 	tween.set_parallel()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
@@ -39,6 +45,9 @@ func _on_mouse_exited() -> void:
 	tween.tween_property(button, "rotation", 0, 0.25).set_trans(Tween.TRANS_CUBIC)
 
 func _on_pressed() -> void:
+	if !get_tree():
+		return
+	
 	var tween_scale = get_tree().create_tween()
 	var tween_rotation = get_tree().create_tween()
 	

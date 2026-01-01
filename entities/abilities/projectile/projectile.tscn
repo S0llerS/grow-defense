@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bct6eyqgdgc22"]
 
-[ext_resource type="Script" uid="uid://632jh8qc73i1" path="res://entities/abilities/friendly/projectile/projectile.gd" id="1_f13nr"]
+[ext_resource type="Script" uid="uid://632jh8qc73i1" path="res://entities/abilities/projectile/projectile.gd" id="1_f13nr"]
 [ext_resource type="PackedScene" uid="uid://caqysn8vityxo" path="res://components/HitboxComponent/hitbox_component.tscn" id="2_roenq"]
 [ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="2_xtoli"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vjws8"]
-radius = 8.0
+radius = 1.0
 
 [node name="Projectile" type="CharacterBody2D" unique_id=1174873125]
 collision_layer = 16
@@ -20,7 +20,7 @@ collision_mask = 9
 shape = SubResource("CircleShape2D_vjws8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=808776209]
-scale = Vector2(0.18749999, 0.18749999)
+scale = Vector2(0.015624999, 0.015624999)
 texture = ExtResource("2_xtoli")
 
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

@@ -9,7 +9,16 @@ extends StaticBody2D
 @onready var range_component: RangeComponent = $RangeComponent
 @onready var shoot_component: ShootComponent = $ShootComponent
 
+var status_effect_manager: StatusEffectManager
+
+var damage_multiplier: float = 1.0
+var shoot_speed_multiplier: float = 1.0
+
 func _ready() -> void:
+	# add status effect manager
+	status_effect_manager = StatusEffectManager.new()
+	add_child(status_effect_manager)
+	
 	# setup
 	health_component.max_health = plant_stats.health
 	health_component.health = plant_stats.health
@@ -19,9 +28,20 @@ func _ready() -> void:
 	damage_component.crit_chance = plant_stats.crit_chance
 	
 	if range_component:
-		range_component.scale = Vector2(plant_stats.attack_range, plant_stats.attack_range)
+		range_component.scale = Vector2(plant_stats.shoot_range, plant_stats.shoot_range)
 	if shoot_component:
-		shoot_component.timer.wait_time = plant_stats.attack_speed
+		shoot_component.shoot_speed = plant_stats.shoot_speed
+		shoot_component.setup({ "shoot_speed": plant_stats.shoot_speed })
+		
+		shoot_component.projectile_speed = plant_stats.projectile_speed
+		shoot_component.projectile_size = plant_stats.projectile_size
+		
+		shoot_component.projectile_slows_down = plant_stats.projectile_slows_down
+		shoot_component.can_pierce = plant_stats.can_pierce
+		
+		shoot_component.spread = plant_stats.shoot_spread
+		shoot_component.n_projectiles = plant_stats.n_projectiles
+		shoot_component.n_projectile_burst = plant_stats.n_projectile_burst
 	
 	# signals
 	health_component.damaged.connect(_on_damaged)

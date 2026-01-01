@@ -1,22 +1,27 @@
 class_name Projectile
 extends CharacterBody2D
 
-var speed : float = 450.0
+var speed : float
+var slows_down : bool = true
 
 var damage : int
+
+var can_pierce : bool = false
 
 var direction : Vector2
 var target : Node2D
 
-func _physics_process(_delta: float) -> void:
-	if target:
-		direction = (target.global_position - global_position).normalized()
-		velocity = direction * speed
+func _physics_process(delta: float) -> void:
+	#if target:
+		#direction = (target.global_position - global_position).normalized()
+		#velocity = direction * speed
 	
+	if slows_down:
+		velocity = velocity.lerp(Vector2.ZERO, 2.0 * delta)
 	move_and_slide()
 	
 	# clean up projectiles
-	if velocity.length() < speed / 2:
+	if velocity.length() < 10.0:
 		queue_free()
 	if abs(global_position.x) > 2148 or abs(global_position.y) > 1252:
 		queue_free()
@@ -28,4 +33,5 @@ func _on_hitbox_component_area_entered(area: Area2D) -> void:
 		PopupManager.spawn_damage_popup(global_position, damage)
 		object.health_component.take_damage(damage)
 	
-	queue_free()
+	if !can_pierce:
+		queue_free()
