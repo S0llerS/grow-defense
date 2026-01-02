@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cqglintsvoc3x" path="res://components/DamageComponent/damage_component.tscn" id="4_0oa61"]
 [ext_resource type="PackedScene" uid="uid://ch6ng6al21wq6" path="res://components/RangeComponent/range_component.tscn" id="5_bctnj"]
 [ext_resource type="PackedScene" uid="uid://diro4ixbmp037" path="res://components/AttackComponent/attack_component.tscn" id="6_ueecv"]
-[ext_resource type="PackedScene" uid="uid://dw8qmp7yndk4u" path="res://entities/abilities/splash/splash.tscn" id="7_hd7so"]
-[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="8_n23so"]
+[ext_resource type="Texture2D" uid="uid://ojms0rr7wurr" path="res://entities/enemies/ranged/ranged.png" id="8_a2ult"]
+[ext_resource type="PackedScene" uid="uid://nkdg40bqdp1r" path="res://components/ShadowComponent/shadow_component.tscn" id="9_a2ult"]
 
 [sub_resource type="Resource" id="Resource_xcdy6"]
 script = ExtResource("2_a2ult")
@@ -27,6 +27,60 @@ radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqcwe"]
 radius = 24.0
+
+[sub_resource type="Animation" id="Animation_vii03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_rac2x"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.27557665, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.175, 0.325), Vector2(0.275, 0.225), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_ixkfu"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.225, 0.275), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ult"]
+_data = {
+&"RESET": SubResource("Animation_vii03"),
+&"attack": SubResource("Animation_rac2x"),
+&"idle": SubResource("Animation_ixkfu")
+}
 
 [node name="Ranged" type="CharacterBody2D" unique_id=1450677281]
 collision_layer = 8
@@ -50,12 +104,18 @@ collision_layer = 0
 collision_mask = 6
 
 [node name="AttackComponent" parent="." unique_id=408300658 instance=ExtResource("6_ueecv")]
-splash = ExtResource("7_hd7so")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=775562032]
-modulate = Color(1, 0.6235135, 0.38541865, 1)
-scale = Vector2(0.375, 0.375)
-texture = ExtResource("8_n23so")
+[node name="Sprite" type="Sprite2D" parent="." unique_id=775562032]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_a2ult")
+
+[node name="ShadowComponent" parent="Sprite" unique_id=1354104579 instance=ExtResource("9_a2ult")]
+position = Vector2(0, 28)
+scale = Vector2(60.33401, 53.560204)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1785410690]
 shape = SubResource("CircleShape2D_wqcwe")
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=931905462]
+libraries/ = SubResource("AnimationLibrary_a2ult")
+autoplay = &"idle"

@@ -2,7 +2,7 @@ extends Node
 
 # round stats
 var score : int = 0
-var money : int = 1000
+var money : int = 100
 var food : int = 0
 
 var enemies_killed : int = 0
@@ -34,7 +34,7 @@ signal wave_changed
 func reset() -> void:
 	# stats
 	score = 0
-	money = 10000
+	money = 100
 	food = 0
 	
 	enemies_killed = 0

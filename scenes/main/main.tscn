@@ -23,6 +23,7 @@ shader_parameter/num_of_layers = 40
 script = ExtResource("1_a8run")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1228932918]
+visible = false
 position = Vector2(2, 6)
 texture = ExtResource("1_hyk8p")
 
@@ -49,7 +50,3 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_hyk8p")
 region_enabled = true
 region_rect = Rect2(0, 0, 2500, 1500)
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=651405418]
-position = Vector2(-256, 2)
-texture = ExtResource("1_hyk8p")

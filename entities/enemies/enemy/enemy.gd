@@ -11,6 +11,8 @@ extends CharacterBody2D
 @onready var range_component: RangeComponent = $RangeComponent
 @onready var attack_component: AttackComponent = $AttackComponent
 
+@onready var sprite: Sprite2D = $Sprite
+
 var speed_multiplier: float = 1.0 # for applying effect e.g. slow
 
 var max_vel: Vector2
@@ -69,4 +71,6 @@ func _physics_process(delta: float) -> void:
 		velocity = lerp(velocity, Vector2.ZERO, 8.0 * delta)
 	
 	velocity = velocity.clamp(-max_vel, max_vel)
+	sprite.flip_h = velocity.x < 0
+	
 	move_and_slide()

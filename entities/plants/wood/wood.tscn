@@ -13,7 +13,7 @@
 [sub_resource type="Resource" id="Resource_x6g30"]
 script = ExtResource("2_futjr")
 title = "Wood, just wood"
-price = 50
+price = 200
 type = 2
 health = 100
 damage = 0

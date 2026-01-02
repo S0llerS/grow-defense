@@ -15,12 +15,14 @@ script = ExtResource("2_g4y8o")
 title = "Mush no Room"
 price = 250
 type = 1
+shoot_range = 150.0
+shoot_speed = 1.2
 projectile_speed = 350.0
 projectile_size = 18.0
 projectile_slows_down = true
 can_pierce = true
 shoot_spread = 60.0
-n_projectile_burst = 10
+n_projectile_burst = 8
 metadata/_custom_type_script = "uid://dcjp5tv5gi8ah"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ctpvu"]

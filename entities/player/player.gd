@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @onready var health_component: HealthComponent = $HealthComponent
 
+@onready var sprite: Sprite2D = $Sprite
+
 var speed : float = 160.0
 
 # dash
@@ -48,6 +50,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = lerp(velocity, direction * speed, 18.0 * delta)
 	
+	sprite.flip_h = velocity.x > 0
 	move_and_slide()
 
 

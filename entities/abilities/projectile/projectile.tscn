@@ -2,10 +2,47 @@
 
 [ext_resource type="Script" uid="uid://632jh8qc73i1" path="res://entities/abilities/projectile/projectile.gd" id="1_f13nr"]
 [ext_resource type="PackedScene" uid="uid://caqysn8vityxo" path="res://components/HitboxComponent/hitbox_component.tscn" id="2_roenq"]
-[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="2_xtoli"]
+[ext_resource type="Texture2D" uid="uid://dn70gkf8kll3a" path="res://assets/textures/seed_projectile.png" id="3_t5ofp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vjws8"]
 radius = 1.0
+
+[sub_resource type="Animation" id="Animation_t5ofp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2d17i"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l57gq"]
+_data = {
+&"RESET": SubResource("Animation_t5ofp"),
+&"idle": SubResource("Animation_2d17i")
+}
 
 [node name="Projectile" type="CharacterBody2D" unique_id=1174873125]
 collision_layer = 16
@@ -20,7 +57,12 @@ collision_mask = 9
 shape = SubResource("CircleShape2D_vjws8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=808776209]
-scale = Vector2(0.015624999, 0.015624999)
-texture = ExtResource("2_xtoli")
+scale = Vector2(0.062499996, 0.062499996)
+texture = ExtResource("3_t5ofp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1193453651]
+libraries/ = SubResource("AnimationLibrary_l57gq")
+autoplay = &"idle"
+speed_scale = 2.0
 
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

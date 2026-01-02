@@ -22,8 +22,8 @@ var current_wave_enemies: int = 0
 var enemies_left_to_spawn: int = 0
 var enemy_scenes_to_spawn: Array[PackedScene] = []
 
-var base_budget : int = 100
-var growth_rate : float = 1.25
+var base_budget : int = 5
+var growth_rate : float = 1.2
 
 # for UI, we=WaveEnemies
 signal total_we_changed
@@ -92,6 +92,7 @@ func distribute_budget(budget):
 func start_wave():
 	# get budget for the wave
 	var wave_budget: int = int(base_budget * pow(growth_rate, Stats.wave))
+	wave_budget = min(wave_budget, 2000)
 	
 	# distribute wave budget
 	distribute_budget(wave_budget)

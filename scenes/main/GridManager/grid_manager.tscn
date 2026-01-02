@@ -23,7 +23,7 @@ grid_cell = ExtResource("3_1vk2i")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=987469318]
 modulate = Color(0.3933176, 0.7298083, 0.3890666, 1)
-z_index = -1
+z_index = -2
 texture_repeat = 2
 scale = Vector2(2, 2)
 texture = ExtResource("1_urf5e")

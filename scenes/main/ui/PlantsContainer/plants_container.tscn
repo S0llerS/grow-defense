@@ -63,13 +63,13 @@ unique_name_in_owner = true
 layout_mode = 2
 columns = 3
 
-[node name="Wood" parent="Container/PanelContainer/GridContainer" unique_id=160319891 instance=ExtResource("2_bmf1t")]
-layout_mode = 2
-plant_scene = ExtResource("8_bo0g2")
-
 [node name="Sunflower" parent="Container/PanelContainer/GridContainer" unique_id=146052290 instance=ExtResource("2_bmf1t")]
 layout_mode = 2
 plant_scene = ExtResource("6_rrw50")
+
+[node name="Wood" parent="Container/PanelContainer/GridContainer" unique_id=160319891 instance=ExtResource("2_bmf1t")]
+layout_mode = 2
+plant_scene = ExtResource("8_bo0g2")
 
 [node name="Mushroom" parent="Container/PanelContainer/GridContainer" unique_id=1589530971 instance=ExtResource("2_bmf1t")]
 layout_mode = 2
