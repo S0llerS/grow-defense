@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://w6ek4np2ijup" path="res://components/HurtboxComponent/hurtbox_component.tscn" id="4_gu82b"]
 [ext_resource type="PackedScene" uid="uid://ch6ng6al21wq6" path="res://components/RangeComponent/range_component.tscn" id="5_qxlrg"]
 [ext_resource type="PackedScene" uid="uid://c1vjskm3m6j7y" path="res://components/ShootComponent/shoot_component.tscn" id="6_o7u21"]
-[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="7_gnjnf"]
+[ext_resource type="PackedScene" uid="uid://nkdg40bqdp1r" path="res://components/ShadowComponent/shadow_component.tscn" id="8_6bcy4"]
+[ext_resource type="Texture2D" uid="uid://baoahuwo0gx3w" path="res://entities/plants/sunflower/sunflower.png" id="8_46pk5"]
 
 [sub_resource type="Resource" id="Resource_46pk5"]
 script = ExtResource("2_u1r6e")
@@ -16,11 +17,62 @@ health = 5
 damage = 1
 metadata/_custom_type_script = "uid://dcjp5tv5gi8ah"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ctpvu"]
-radius = 14.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rk1f"]
-radius = 14.0
+radius = 18.027756
+
+[sub_resource type="Animation" id="Animation_vii03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_rac2x"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.27557665, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.175, 0.325), Vector2(0.275, 0.225), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_ixkfu"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.225, 0.275), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6bcy4"]
+_data = {
+&"RESET": SubResource("Animation_vii03"),
+&"attack": SubResource("Animation_rac2x"),
+&"idle": SubResource("Animation_ixkfu")
+}
 
 [node name="Sunflower" type="StaticBody2D" unique_id=958156574]
 collision_layer = 4
@@ -37,7 +89,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=514708514]
-shape = SubResource("CircleShape2D_ctpvu")
+shape = SubResource("CircleShape2D_0rk1f")
 
 [node name="RangeComponent" parent="." unique_id=1504474663 instance=ExtResource("5_qxlrg")]
 collision_layer = 0
@@ -45,12 +97,20 @@ collision_mask = 8
 
 [node name="ShootComponent" parent="." unique_id=1181989319 instance=ExtResource("6_o7u21")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1222877329]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1222877329]
 modulate = Color(1, 1, 0, 1)
-scale = Vector2(0.203125, 0.21875)
-texture = ExtResource("7_gnjnf")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_46pk5")
+
+[node name="ShadowComponent" parent="Sprite" unique_id=1354104579 instance=ExtResource("8_6bcy4")]
+position = Vector2(0, 68)
+scale = Vector2(35.53311, 34.15913)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=832655109]
 shape = SubResource("CircleShape2D_0rk1f")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1209348285]
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=1539559946]
+libraries/ = SubResource("AnimationLibrary_6bcy4")
+autoplay = &"idle"

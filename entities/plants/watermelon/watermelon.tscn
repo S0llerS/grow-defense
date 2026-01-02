@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cqglintsvoc3x" path="res://components/DamageComponent/damage_component.tscn" id="4_dcx6l"]
 [ext_resource type="PackedScene" uid="uid://ch6ng6al21wq6" path="res://components/RangeComponent/range_component.tscn" id="4_w7nsh"]
 [ext_resource type="PackedScene" uid="uid://c1vjskm3m6j7y" path="res://components/ShootComponent/shoot_component.tscn" id="5_frqo4"]
-[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="6_1b7fy"]
 [ext_resource type="PackedScene" uid="uid://bjs06pfys6df7" path="res://entities/abilities/mortar_bomb/mortar_bomb.tscn" id="8_iqmjd"]
+[ext_resource type="Texture2D" uid="uid://chxbkm2xjfuan" path="res://entities/plants/watermelon/watermelon.png" id="9_iqmjd"]
+[ext_resource type="PackedScene" uid="uid://nkdg40bqdp1r" path="res://components/ShadowComponent/shadow_component.tscn" id="9_vii03"]
 
 [sub_resource type="Resource" id="Resource_dcx6l"]
 script = ExtResource("2_qtrxl")
@@ -21,10 +22,64 @@ projectile_size = 32.0
 metadata/_custom_type_script = "uid://dcjp5tv5gi8ah"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ctpvu"]
-radius = 14.0
+radius = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rk1f"]
-radius = 14.0
+radius = 28.0
+
+[sub_resource type="Animation" id="Animation_vii03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_rac2x"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.27557665, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.175, 0.325), Vector2(0.275, 0.225), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_ixkfu"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.225, 0.275), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rac2x"]
+_data = {
+&"RESET": SubResource("Animation_vii03"),
+&"attack": SubResource("Animation_rac2x"),
+&"idle": SubResource("Animation_ixkfu")
+}
 
 [node name="Watermelon" type="StaticBody2D" unique_id=958156574]
 collision_layer = 4
@@ -51,12 +106,19 @@ collision_mask = 8
 projectile_scene = null
 mortar_bomb_scene = ExtResource("8_iqmjd")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1222877329]
-modulate = Color(0, 1, 0, 1)
-scale = Vector2(0.203125, 0.21875)
-texture = ExtResource("6_1b7fy")
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1222877329]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_iqmjd")
+
+[node name="ShadowComponent" parent="Sprite" unique_id=1354104579 instance=ExtResource("9_vii03")]
+position = Vector2(0, 80)
+scale = Vector2(83.605576, -93.24357)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=832655109]
 shape = SubResource("CircleShape2D_0rk1f")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1209348285]
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=1850614039]
+libraries/ = SubResource("AnimationLibrary_rac2x")
+autoplay = &"idle"

@@ -6,6 +6,7 @@
 [node name="AttackComponent" type="Node2D" unique_id=408300658]
 script = ExtResource("1_psvg1")
 splash = ExtResource("2_u2003")
+child_of_attacker = null
 
 [node name="Timer" type="Timer" parent="." unique_id=1432547351]
 one_shot = true

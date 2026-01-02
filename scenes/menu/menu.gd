@@ -2,6 +2,9 @@ extends Control
 
 @onready var animator: AnimationPlayer = %Animator
 
+func _ready() -> void:
+	MusicPlayer.play_music(MusicPlayer.SPACE_AMBIENT)
+
 func transition():
 	DiamondTransition.transition_to(Scenes.MAIN)
 

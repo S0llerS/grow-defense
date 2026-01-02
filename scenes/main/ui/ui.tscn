@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b513proc1spoq" path="res://scenes/main/ui/ui.gd" id="1_2q31f"]
 [ext_resource type="Theme" uid="uid://dj2d40381wyn2" path="res://assets/themes/default.tres" id="2_nf0va"]
 [ext_resource type="Texture2D" uid="uid://710gpukaf8tp" path="res://scenes/main/ui/icons/settings_outline_icon.png" id="3_3q8gq"]
+[ext_resource type="Texture2D" uid="uid://nsrg61mul3we" path="res://assets/textures/money.png" id="3_dynxa"]
 [ext_resource type="PackedScene" uid="uid://cxiv456a7a0oo" path="res://scenes/main/ui/PlantsContainer/plants_container.tscn" id="4_nswco"]
 [ext_resource type="PackedScene" uid="uid://b5bujhl3v0e21" path="res://components/ButtonComponent/button_component.tscn" id="5_fhd3w"]
 [ext_resource type="PackedScene" uid="uid://jvyr2qnhq6sa" path="res://scenes/main/ui/EndScreen/end_screen.tscn" id="6_nswco"]
@@ -87,13 +88,22 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Score: 0"
 
-[node name="Money" type="Label" parent="Control/MarginContainer/StatsContainer" unique_id=1150305181]
+[node name="HBoxMoney" type="HBoxContainer" parent="Control/MarginContainer/StatsContainer" unique_id=251396893]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/StatsContainer/HBoxMoney" unique_id=260485999]
+layout_mode = 2
+texture = ExtResource("3_dynxa")
+
+[node name="Money" type="Label" parent="Control/MarginContainer/StatsContainer/HBoxMoney" unique_id=1150305181]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Money: 0"
+text = "0"
 
 [node name="Food" type="Label" parent="Control/MarginContainer/StatsContainer" unique_id=1598188052]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Food: 0"
 

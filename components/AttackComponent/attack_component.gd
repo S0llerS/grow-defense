@@ -4,6 +4,8 @@ extends Node2D
 @export var splash : PackedScene
 @export var child_of_attacker : bool = true
 
+@export var attack_texture: Texture
+
 @onready var timer: Timer = $Timer
 
 var can_attack : bool = true
@@ -35,6 +37,10 @@ func attack(damage: int):
 			instance.hitbox_component.set_collision_mask_value(3, true) # Plant
 		else:
 			instance.hitbox_component.set_collision_mask_value(4, true) # Enemy
+		
+		# visuals
+		if attack_texture:
+			instance.sprite.texture = attack_texture
 		
 		# attack end
 		can_attack = false

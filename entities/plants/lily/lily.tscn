@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cqglintsvoc3x" path="res://components/DamageComponent/damage_component.tscn" id="4_iipfj"]
 [ext_resource type="PackedScene" uid="uid://ch6ng6al21wq6" path="res://components/RangeComponent/range_component.tscn" id="4_msb30"]
 [ext_resource type="PackedScene" uid="uid://c1vjskm3m6j7y" path="res://components/ShootComponent/shoot_component.tscn" id="5_pot63"]
-[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="6_2w3cn"]
+[ext_resource type="Texture2D" uid="uid://chgjjvehmvt5s" path="res://entities/plants/lily/lily.png" id="9_wwqmh"]
+[ext_resource type="PackedScene" uid="uid://nkdg40bqdp1r" path="res://components/ShadowComponent/shadow_component.tscn" id="10_5dsh0"]
+[ext_resource type="Texture2D" uid="uid://5yui00efcaye" path="res://entities/plants/lily/buff.png" id="10_wwqmh"]
 
 [sub_resource type="Resource" id="Resource_by1pl"]
 script = ExtResource("2_by1pl")
@@ -39,6 +41,97 @@ radius = 14.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_by1pl"]
 radius = 80.0
 
+[sub_resource type="Animation" id="Animation_wwqmh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5dsh0"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d4fru"]
+_data = {
+&"RESET": SubResource("Animation_wwqmh"),
+&"idle": SubResource("Animation_5dsh0")
+}
+
+[sub_resource type="Animation" id="Animation_vii03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_rac2x"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.27557665, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.175, 0.325), Vector2(0.275, 0.225), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_ixkfu"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.225, 0.275), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wwqmh"]
+_data = {
+&"RESET": SubResource("Animation_vii03"),
+&"attack": SubResource("Animation_rac2x"),
+&"idle": SubResource("Animation_ixkfu")
+}
+
 [node name="Lily" type="StaticBody2D" unique_id=958156574]
 collision_layer = 4
 collision_mask = 0
@@ -63,10 +156,14 @@ collision_mask = 8
 
 [node name="ShootComponent" parent="." unique_id=1181989319 instance=ExtResource("5_pot63")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1222877329]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1222877329]
 modulate = Color(0.5764706, 0, 1, 1)
-scale = Vector2(0.203125, 0.21875)
-texture = ExtResource("6_2w3cn")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_wwqmh")
+
+[node name="ShadowComponent" parent="Sprite" unique_id=1354104579 instance=ExtResource("10_5dsh0")]
+position = Vector2(0, 72)
+scale = Vector2(43.130672, 51.31936)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=832655109]
 shape = SubResource("CircleShape2D_0rk1f")
@@ -81,9 +178,19 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_by1pl")
 
 [node name="Sprite2D" type="Sprite2D" parent="BuffArea" unique_id=435788672]
-modulate = Color(1, 0, 1, 0.3882353)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("6_2w3cn")
+modulate = Color(1, 0, 1, 0.19607843)
+z_index = 1
+scale = Vector2(0.65, 0.627)
+texture = ExtResource("10_wwqmh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BuffArea" unique_id=635018425]
+libraries/ = SubResource("AnimationLibrary_d4fru")
+autoplay = &"idle"
+speed_scale = 0.1
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=2069141937]
+libraries/ = SubResource("AnimationLibrary_wwqmh")
+autoplay = &"idle"
 
 [connection signal="area_entered" from="BuffArea" to="." method="_on_buff_area_area_entered"]
 [connection signal="area_exited" from="BuffArea" to="." method="_on_buff_area_area_exited"]

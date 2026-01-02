@@ -9,6 +9,9 @@ extends StaticBody2D
 @onready var range_component: RangeComponent = $RangeComponent
 @onready var shoot_component: ShootComponent = $ShootComponent
 
+@onready var sprite: Sprite2D = $Sprite
+@onready var animator: AnimationPlayer = $Animator
+
 var status_effect_manager: StatusEffectManager
 
 var damage_multiplier: float = 1.0
@@ -48,12 +51,21 @@ func _ready() -> void:
 	# signals
 	health_component.damaged.connect(_on_damaged)
 	health_component.destroyed.connect(_on_destroyed)
+	
+	shoot_component.shooted.connect(_on_shooted)
 
 func _on_damaged():
-	pass
+	SoundPlayer.play_sound(SoundPlayer.PLANT_DAMAGED)
 
 func _on_destroyed():
+	SoundPlayer.play_sound(SoundPlayer.PLANT_DESTROYED)
 	queue_free()
+
+func _on_shooted():
+	animator.stop()
+	animator.play("attack")
+	await animator.animation_finished
+	animator.play("idle")
 
 func apply_multipliers():
 	damage_component.damage = int(plant_stats.damage * damage_multiplier)
@@ -67,6 +79,9 @@ func _physics_process(_delta: float) -> void:
 	
 	var areas = range_component.get_overlapping_areas()
 	for area in areas:
-		if area.get_parent() is Enemy:
+		var object = area.get_parent()
+		if object is Enemy:
+			sprite.flip_h = object.global_position.x - global_position.x < 0
+			
 			var result = damage_component.calculate_damage()
-			shoot_component.shoot(result.total_damage, area.get_parent())
+			shoot_component.shoot(result.total_damage, object)

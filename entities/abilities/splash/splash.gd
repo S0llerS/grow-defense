@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var animator: AnimationPlayer = %Animator
 
+@onready var sprite: Sprite2D = %Sprite
+
 var damage: int
 var effect: PackedScene
 

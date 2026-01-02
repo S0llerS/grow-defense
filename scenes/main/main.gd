@@ -2,6 +2,8 @@ class_name Main
 extends Node2D
 
 func _ready() -> void:
+	MusicPlayer.play_music(MusicPlayer.SPACE_AMBIENT)
+	
 	Stats.reset()
 
 func _input(_event: InputEvent) -> void:

@@ -19,7 +19,7 @@ func _ready() -> void:
 			# setup
 			var plant_stats = plant_cell.plant_scene.instantiate().plant_stats
 			
-			plant_cell.price.text = "$" + str(plant_stats.price)
+			plant_cell.price.text = str(plant_stats.price)
 			plant_cell.id.text = str(id)
 			id += 1
 			

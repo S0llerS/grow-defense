@@ -16,6 +16,9 @@ const ENEMY_DESTROYED = preload("uid://sobvbeg84xai")
 # plants
 const PLANT = preload("uid://ck833psr13bts")
 
+const PLANT_DAMAGED = preload("uid://bqoouuwb7se85")
+const PLANT_DESTROYED = preload("uid://ksy3vwm3uii2")
+
 const SUNFLOWER = preload("uid://dcedo00wijl23")
 const MUSHROOM = preload("uid://c1smdslyvm6oi")
 const FREEZE = preload("uid://di77fuygctkfj")

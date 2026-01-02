@@ -37,7 +37,7 @@ func _on_score_changed():
 	score.text = "Score: " + str(Stats.score)
 
 func _on_money_changed():
-	money.text = "Money: $" + str(Stats.money)
+	money.text = str(Stats.money)
 
 func _on_food_changed():
 	food.text = "Food: " + str(Stats.food)
@@ -47,6 +47,7 @@ func _on_wave_changed():
 	animator.play("wave")
 
 func _on_destroyed():
+	MusicPlayer.stop_music()
 	end_screen.toggle()
 
 func _on_total_we_changed():

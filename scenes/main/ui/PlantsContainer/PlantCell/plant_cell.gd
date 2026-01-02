@@ -15,8 +15,11 @@ var tooltip: Tooltip
 
 func _ready() -> void:
 	var plant: Plant = plant_scene.instantiate()
+	add_child(plant)
 	
 	plant_stats = plant.plant_stats
+	plant_icon.texture = plant.sprite.texture
+	
 	plant.queue_free()
 
 func _process(_delta: float) -> void:

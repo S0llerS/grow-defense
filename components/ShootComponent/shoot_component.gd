@@ -24,6 +24,8 @@ var can_shoot : bool = true
 
 var SHOOT_SFX
 
+signal shooted
+
 func setup(stats: Dictionary) -> void:
 	shoot_speed = stats.shoot_speed
 	
@@ -32,6 +34,7 @@ func setup(stats: Dictionary) -> void:
 func shoot(damage: int, target: Node2D):
 	if can_shoot:
 		can_shoot = false
+		shooted.emit()
 		
 		var projectile_direction = (target.global_position - global_position).normalized()
 		for i in range(n_projectiles):
