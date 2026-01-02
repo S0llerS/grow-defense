@@ -4,12 +4,18 @@
 [ext_resource type="PackedScene" uid="uid://caqysn8vityxo" path="res://components/HitboxComponent/hitbox_component.tscn" id="2_4qlh6"]
 [ext_resource type="PackedScene" uid="uid://diro4ixbmp037" path="res://components/AttackComponent/attack_component.tscn" id="2_vov32"]
 [ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="3_vov32"]
+[ext_resource type="PackedScene" uid="uid://nkdg40bqdp1r" path="res://components/ShadowComponent/shadow_component.tscn" id="4_vov32"]
+
+[sub_resource type="Curve" id="Curve_4qlh6"]
+_data = [Vector2(0, 0), 0.0, 3.7262743, 0, 0, Vector2(0.50173014, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.7796514, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3an5f"]
 radius = 1.0
 
 [node name="MortarBomb" type="CharacterBody2D" unique_id=777541239]
 script = ExtResource("1_1jrhn")
+amplitude_curve = SubResource("Curve_4qlh6")
 
 [node name="AttackComponent" parent="." unique_id=408300658 instance=ExtResource("2_vov32")]
 child_of_attacker = false
@@ -21,7 +27,10 @@ collision_mask = 9
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=2017271612]
 shape = SubResource("CircleShape2D_3an5f")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1050292852]
+[node name="ShadowComponent" parent="." unique_id=1354104579 instance=ExtResource("4_vov32")]
+position = Vector2(0, 1)
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1050292852]
 scale = Vector2(0.015624999, 0.015624999)
 texture = ExtResource("3_vov32")
 

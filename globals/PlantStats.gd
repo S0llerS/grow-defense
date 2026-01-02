@@ -4,6 +4,9 @@ extends Resource
 @export var title : String = "Plant"
 @export var price : int = 100
 
+const TYPE = ["Shooter", "Splash", "Tank", "Support", "Mortar"]
+const COLOR = [Color.YELLOW, Color.AQUA, Color.GREEN, Color.FUCHSIA, Color.RED]
+
 enum PlantType { SHOOTER, SPLASH, TANK, SUPPORT, MORTAR }
 @export var type : PlantType = PlantType.SHOOTER
 

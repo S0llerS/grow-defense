@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://dj2d40381wyn2" path="res://assets/themes/default.tres" id="1_u6iy6"]
 [ext_resource type="PackedScene" uid="uid://b5bujhl3v0e21" path="res://components/ButtonComponent/button_component.tscn" id="2_7q3ta"]
 [ext_resource type="Script" uid="uid://b2lkmpianf1cj" path="res://scenes/main/ui/PlantsContainer/PlantCell/plant_cell.gd" id="2_28ku6"]
+[ext_resource type="PackedScene" uid="uid://bfgrc3n3ibplp" path="res://scenes/main/ui/PlantsContainer/Tooltip/tooltip.tscn" id="3_mfmy8"]
 [ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="4_his61"]
 [ext_resource type="Shader" uid="uid://pwfppl5gge7p" path="res://assets/shaders/animated_dotted_outline.gdshader" id="5_stwoe"]
 
@@ -21,6 +22,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 theme = ExtResource("1_u6iy6")
 script = ExtResource("2_28ku6")
+tooltip_scene = ExtResource("3_mfmy8")
 
 [node name="Outline" type="ColorRect" parent="." unique_id=801776016]
 unique_name_in_owner = true
@@ -82,3 +84,6 @@ theme_override_font_sizes/font_size = 16
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
