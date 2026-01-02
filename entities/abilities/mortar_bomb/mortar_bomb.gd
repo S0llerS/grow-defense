@@ -35,14 +35,11 @@ func _physics_process(_delta: float) -> void:
 	shadow_component.scale = Vector2.ONE - Vector2(amplitude, amplitude) * 0.5
 	sprite.position.y = -amplitude * min(total_distance / 10, 5)
 	
-	# clean up projectiles
+	# handle explosion on target position
 	if (target_position - global_position).length() < 10.0:
 		attack_component.attack(damage)
-		queue_free()
-	
-	if velocity.length() < 10.0:
-		queue_free()
-	if abs(global_position.x) > 2148 or abs(global_position.y) > 1252:
+		SoundPlayer.play_sound(SoundPlayer.WATERMELON)
+		
 		queue_free()
 
 

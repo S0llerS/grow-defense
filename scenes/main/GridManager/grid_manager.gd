@@ -41,6 +41,8 @@ func init() -> void:
 						plant_instance.queue_free()
 						return
 					
+					SoundPlayer.play_sound(SoundPlayer.PLANT)
+					
 					cell.add_child(plant_instance)
 					cell.plant = plant_instance
 			)

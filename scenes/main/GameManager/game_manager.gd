@@ -34,16 +34,10 @@ func _ready() -> void:
 	start_wave()
 
 func calculate_values() -> void:
-	var enemy: Enemy = bomb_enemy.instantiate()
-	enemy_values.append(1)
-	enemy.queue_free()
-	
-	enemy_scenes = [bomb_enemy]
-	
-	#for enemy_scene in enemy_scenes:
-		#var enemy: Enemy = enemy_scene.instantiate()
-		#enemy_values.append(enemy.enemy_stats.enemy_value)
-		#enemy.queue_free()
+	for enemy_scene in enemy_scenes:
+		var enemy: Enemy = enemy_scene.instantiate()
+		enemy_values.append(enemy.enemy_stats.enemy_value)
+		enemy.queue_free()
 
 func add_entity(scene, pos):
 	if !player:
@@ -69,7 +63,7 @@ func add_entity(scene, pos):
 
 func get_random_position() -> Vector2:
 	var angle = randf_range(0.0, TAU)
-	var pos = Vector2(cos(angle), sin(angle)) * 500#0.0
+	var pos = Vector2(cos(angle), sin(angle)) * 3000.0
 	
 	return pos
 

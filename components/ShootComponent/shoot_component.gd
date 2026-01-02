@@ -22,6 +22,8 @@ var plant_stats: PlantStats
 
 var can_shoot : bool = true
 
+var SHOOT_SFX
+
 func setup(stats: Dictionary) -> void:
 	shoot_speed = stats.shoot_speed
 	
@@ -35,8 +37,11 @@ func shoot(damage: int, target: Node2D):
 		for i in range(n_projectiles):
 			for j in range(n_projectile_burst):
 				if projectile_scene:
+					if SHOOT_SFX:
+						SoundPlayer.play_sound(SHOOT_SFX)
 					spawn_projectile(damage, projectile_direction)
 				if mortar_bomb_scene:
+					SoundPlayer.play_sound(SoundPlayer.MORTAR)
 					spawn_mortar_bomb(damage, target.global_position)
 				
 				var delay = shoot_speed / n_projectile_burst * 0.75

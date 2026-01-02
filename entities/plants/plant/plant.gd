@@ -14,6 +14,8 @@ var status_effect_manager: StatusEffectManager
 var damage_multiplier: float = 1.0
 var shoot_speed_multiplier: float = 1.0
 
+var SHOOT_SFX
+
 func _ready() -> void:
 	# add status effect manager
 	status_effect_manager = StatusEffectManager.new()

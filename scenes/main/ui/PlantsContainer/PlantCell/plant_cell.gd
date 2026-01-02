@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if tooltip:
-		tooltip.global_position = get_global_mouse_position() + Vector2(8, -8)
+		tooltip.global_position = get_global_mouse_position() + Vector2(0, -8)
 
 
 func _on_mouse_entered() -> void:

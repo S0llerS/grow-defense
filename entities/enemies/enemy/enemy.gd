@@ -28,7 +28,7 @@ func _ready() -> void:
 	#damage_component.crit_chance = enemy_stats.crit_chance
 	
 	range_component.scale = Vector2(enemy_stats.attack_range, enemy_stats.attack_range)
-	attack_component.scale = Vector2(enemy_stats.attack_range, enemy_stats.attack_range)
+	attack_component.scale = Vector2(enemy_stats.attack_range, enemy_stats.attack_range) * 1.25
 	
 	attack_component.timer.wait_time = enemy_stats.attack_speed
 	
@@ -39,16 +39,18 @@ func _ready() -> void:
 	attack_component.attacked.connect(_on_attacked)
 
 func _on_damaged():
-	pass
+	SoundPlayer.play_sound(SoundPlayer.ENEMY_DAMAGED)
 
 func _on_destroyed():
 	Stats.change_score(enemy_stats.score_value)
 	Stats.change_money(enemy_stats.money_value)
 	
+	SoundPlayer.play_sound(SoundPlayer.ENEMY_DESTROYED)
+	
 	queue_free()
 
 func _on_attacked():
-	pass
+	SoundPlayer.play_sound(SoundPlayer.ENEMY_ATTACK)
 
 func _physics_process(delta: float) -> void:
 	# attack

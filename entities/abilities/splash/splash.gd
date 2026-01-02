@@ -12,5 +12,7 @@ func _on_hitbox_component_area_entered(area: Area2D) -> void:
 	PopupManager.spawn_damage_popup(object.global_position, damage)
 	object.health_component.take_damage(damage)
 	if effect:
+		SoundPlayer.play_sound(SoundPlayer.FREEZE)
+		
 		var instance = effect.instantiate()
 		object.add_child(instance)
