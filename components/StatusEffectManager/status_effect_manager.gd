@@ -8,7 +8,14 @@ func _ready() -> void:
 
 func apply_effect(effect: StatusEffect):
 	for stat in effect.stats_multiplier:
-		print(stat, effect.stats_multiplier[stat])
-		
-		if handler.stat:
-			print("THERE IS: ", stat)
+		if handler.get(stat):
+			handler.set(stat, handler.get(stat) + effect.stats_multiplier[stat])
+	
+	handler.apply_multipliers()
+
+func remove_effect(effect: StatusEffect):
+	for stat in effect.stats_multiplier:
+		if handler.get(stat):
+			handler.set(stat, handler.get(stat) - effect.stats_multiplier[stat])
+	
+	handler.apply_multipliers()

@@ -14,8 +14,9 @@
 script = ExtResource("2_by1pl")
 title = "Aura Buff"
 stats_multiplier = {
-"damage": 10.0,
-"shoot_speed": 0.0
+"damage_multiplier": 0.2,
+"scale": Vector2(0.1, 0.1),
+"shoot_speed_multiplier": 100.0
 }
 metadata/_custom_type_script = "uid://dv8qwg0ebe006"
 
@@ -24,6 +25,9 @@ script = ExtResource("2_o8deh")
 title = "Lily the Aura Buffer"
 price = 800
 type = 3
+health = 25
+shoot_range = 0.0
+shoot_speed = 100.0
 metadata/_custom_type_script = "uid://dcjp5tv5gi8ah"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ctpvu"]
@@ -76,4 +80,10 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuffArea" unique_id=201967002]
 shape = SubResource("CircleShape2D_by1pl")
 
+[node name="Sprite2D" type="Sprite2D" parent="BuffArea" unique_id=435788672]
+modulate = Color(1, 0, 1, 0.3882353)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("6_2w3cn")
+
 [connection signal="area_entered" from="BuffArea" to="." method="_on_buff_area_area_entered"]
+[connection signal="area_exited" from="BuffArea" to="." method="_on_buff_area_area_exited"]

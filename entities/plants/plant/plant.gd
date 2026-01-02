@@ -53,6 +53,12 @@ func _on_damaged():
 func _on_destroyed():
 	queue_free()
 
+func apply_multipliers():
+	damage_component.damage = int(plant_stats.damage * damage_multiplier)
+	shoot_component.timer.wait_time = plant_stats.shoot_speed
+	
+	print("Multipliers applied!")
+
 func _physics_process(_delta: float) -> void:
 	if !range_component or !shoot_component:
 		return

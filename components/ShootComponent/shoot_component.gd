@@ -2,6 +2,7 @@ class_name ShootComponent
 extends Node2D
 
 @export var projectile_scene : PackedScene
+@export var mortar_bomb_scene : PackedScene
 
 @onready var timer: Timer = $Timer
 
@@ -33,7 +34,10 @@ func shoot(damage: int, target: Node2D):
 		var projectile_direction = (target.global_position - global_position).normalized()
 		for i in range(n_projectiles):
 			for j in range(n_projectile_burst):
-				spawn_projectile(damage, projectile_direction)
+				if projectile_scene:
+					spawn_projectile(damage, projectile_direction)
+				if mortar_bomb_scene:
+					spawn_mortar_bomb(damage, target.global_position)
 				
 				var delay = shoot_speed / n_projectile_burst * 0.75
 				await get_tree().create_timer(delay).timeout
@@ -60,6 +64,19 @@ func spawn_projectile(damage: int, direction: Vector2):
 	
 	get_parent().get_parent().add_child(projectile)
 	projectile.global_position = global_position
+
+func spawn_mortar_bomb(damage: int, target_position: Vector2):
+	var mortar_bomb : MortarBomb = mortar_bomb_scene.instantiate()
+	
+	mortar_bomb.scale = Vector2(projectile_size, projectile_size)
+	
+	mortar_bomb.speed = projectile_speed
+	mortar_bomb.damage = damage
+	
+	mortar_bomb.target_position = target_position
+	
+	get_parent().get_parent().add_child(mortar_bomb)
+	mortar_bomb.global_position = global_position
 
 func _on_timer_timeout() -> void:
 	can_shoot = true

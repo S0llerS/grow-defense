@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bjs06pfys6df7"]
+
+[ext_resource type="Script" uid="uid://beo1b4kmtiek5" path="res://entities/abilities/mortar_bomb/mortar_bomb.gd" id="1_1jrhn"]
+[ext_resource type="PackedScene" uid="uid://caqysn8vityxo" path="res://components/HitboxComponent/hitbox_component.tscn" id="2_4qlh6"]
+[ext_resource type="PackedScene" uid="uid://diro4ixbmp037" path="res://components/AttackComponent/attack_component.tscn" id="2_vov32"]
+[ext_resource type="Texture2D" uid="uid://h1x34x8mjpc" path="res://icon.svg" id="3_vov32"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3an5f"]
+radius = 1.0
+
+[node name="MortarBomb" type="CharacterBody2D" unique_id=777541239]
+script = ExtResource("1_1jrhn")
+
+[node name="AttackComponent" parent="." unique_id=408300658 instance=ExtResource("2_vov32")]
+child_of_attacker = false
+
+[node name="HitboxComponent" parent="." unique_id=268897847 instance=ExtResource("2_4qlh6")]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=2017271612]
+shape = SubResource("CircleShape2D_3an5f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1050292852]
+scale = Vector2(0.015624999, 0.015624999)
+texture = ExtResource("3_vov32")
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

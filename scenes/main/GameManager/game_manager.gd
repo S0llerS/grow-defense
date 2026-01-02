@@ -69,7 +69,7 @@ func add_entity(scene, pos):
 
 func get_random_position() -> Vector2:
 	var angle = randf_range(0.0, TAU)
-	var pos = Vector2(cos(angle), sin(angle)) * 3000.0
+	var pos = Vector2(cos(angle), sin(angle)) * 500#0.0
 	
 	return pos
 
